@@ -1,4 +1,6 @@
-# Shukongdashi
+
+            ├── question_wenda.py  //问答功能
+            ├── question_zhenduan.py  //故障诊断代码# Shukongdashi
 使用知识图谱，自然语言处理，卷积神经网络等技术，基于python语言，设计了一个数控领域故障诊断专家系统
 
 ## 项目介绍
@@ -11,16 +13,52 @@
 ## 目录结构
     ├── Shukongdashi
         └── demo
-            ├── checkpoints
-            └── data  //目录
+            ├── checkpoints //存放CNN的训练模型
+            ├── data    //CNN预测辅助代码和文件
+                ├── cnews   //使用CNN预测用到的词
+                └── cnews_loader.py    //为数据的预处理文件
+            ├── fencidian.txt   //分词词典
+            ├── question_answer.py  //第一版故障诊断代码（已弃用）
+            ├── question_baocun.py  //处理用户反馈的代码
+            ├── question_buquan.py  //自动补全代码
+            ├── question_pa.py  //在线分析性代码，爬取解决方法
+            ├── question_wenda.py  //问答功能
+            ├── question_zhenduan.py  //故障诊断代码
+            ├── stopwords.txt  //停用词词典
+            └── zhuyu.txt  //故障部位词典
         ├── Model
-            
+            └── neo_models.py  //执行neo4j数据库操作
         ├── test_my
+            ├── data_wordToMysql  //将word中的数据转换成csv文件，存储到MySQL中
+            ├── test_cnnrnn  //CNN卷积神经网络预测
+                ├── checkpoints  //存储训练模型
+                ├── data  //数据的预处理文件
+                ├── neo4j  //导入Neo4j的数据
+                    ├── baojing.csv  //故障代码
+                    ├── caozuo.csv  //执行的操作
+                    ├── caozuoxianxaing.csv  //由于执行某操作引起了某现象
+                    ├── xianxaingbaojing.csv  //某现象对应的报警信息
+                    ├── xianxaingbuwei.csv  //某现象对应的故障部位
+                    ├── xianxiang.csv  //故障现象
+                    ├── xianxiangxianxiang.csv  //故障现象和故障现象之间的关联关系
+                    ├── xianxiangyuanyin.csv  //故障现象的间接故障原因
+                    ├── yuanyin2.csv  //故障原因
+                    ├── zhuyu.csv  //故障部位
+                ├── cnn_model.py  //CNN配置
+                ├── guzhangfenxi.py  //构建Neo4j数据库用的数据
+                └── predict.py  //CNN预测识别故障描述类型
+            └── xianxiangfenxi  //故障部位词典
+                ├── baojing.csv  //对故障现象进行拆分，抽取出故障部位，故障现象，故障发生的背景，手动标记后进一步标注含义
+                ├── biaozhu_minming.txt //标注好的数据，用于训练CNN模型
+                └── guzhangxianxiang.csv    //用于分析的故障现象文件
         ├── toolkit
-        ├── settings.py
-        ├── urls.py
-        ├── view.py
+            └── pre_load.py //预加载训练模型和Neo4j数据库，还可以对读取词典进行预加载，进行性能优化
+        ├── settings.py //配置访问端口等
+        ├── urls.py //配置URL与python函数的映射
+        ├── view.py //默认页面
         ├── wsgi.py
+    ├── db.sqlite3
+    ├── manage.py   //Django框架项目启动入口
 ## 项目配置
 
 ## 系统功能
