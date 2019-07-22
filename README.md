@@ -64,6 +64,7 @@
 安装一系列pip依赖：
 ### 1.导入数据：
 开启neo4j，进入neo4j控制台。将Shukongdashi/test_my/test_cnnrnn/neo4/下的文件放入neo4j安装目录下的/import目录。在控制台依次输入：\
+
         //导入节点
         LOAD CSV WITH HEADERS FROM "file:///baojing.csv" AS line MERGE (:Errorid { title: line.title });
         CREATE CONSTRAINT ON (c:Errorid) ASSERT c.title IS UNIQUE;
