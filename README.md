@@ -61,12 +61,31 @@
 ## 项目配置
 ### 0.安装基本环境：
 确保安装好python3和Neo4j（任意版本）
+安装一系列pip依赖：
 ### 1.导入数据：
+开启neo4j，进入neo4j控制台。将Shukongdashi/test_my/test_cnnrnn/neo4/下的文件放入neo4j安装目录下的/import目录。在控制台依次输入：
+>导入节点
+        LOAD CSV WITH HEADERS FROM "file:///baojing.csv" AS line MERGE (:Errorid { title: line.title });
+        CREATE CONSTRAINT ON (c:Errorid) ASSERT c.title IS UNIQUE;
+        LOAD CSV WITH HEADERS FROM "file:///caozuo.csv" AS line MERGE (:Caozuo { title: line.title });
+        CREATE CONSTRAINT ON (c:Caozuo) ASSERT c.title IS UNIQUE;
+        LOAD CSV WITH HEADERS FROM "file:///xianxiang.csv" AS line MERGE (:Xianxiang { title: line.title });
+        CREATE CONSTRAINT ON (c:Xianxiang) ASSERT c.title IS UNIQUE;
+        LOAD CSV WITH HEADERS FROM "file:///zhuyu.csv" AS line MERGE (:GuzhangBuwei { title: line.title });
+        CREATE CONSTRAINT ON (c:GuzhangBuwei) ASSERT c.title IS UNIQUE;
+        LOAD CSV WITH HEADERS FROM "file:///yuanyin2.csv" AS line MERGE (:Yuanyin { title: line.title });
+        CREATE CONSTRAINT ON (c:Yuanyin) ASSERT c.title IS UNIQUE;
+>导入关系
+        LOAD CSV  WITH HEADERS FROM "file:///caozuoxianxaing.csv" AS line MATCH (entity1 {title:line.title1}),(entity2 {title:line.title2}) CREATE (entity1)-[:CX { type: line.relation }]->(entity2)
+        LOAD CSV  WITH HEADERS FROM "file:///xianxiangyuanyin.csv" AS line MATCH (entity1 {title:line.title1}),(entity2 {title:line.title2}) CREATE (entity1)-[:XY { type: line.relation }]->(entity2)
+        LOAD CSV  WITH HEADERS FROM "file:///xianxiangxianxiang.csv" AS line MATCH (entity1 {title:line.title1}),(entity2 {title:line.title2}) CREATE (entity1)-[:XX { type: line.relation }]->(entity2)
+        LOAD CSV  WITH HEADERS FROM "file:///xianxaingbuwei.csv" AS line MATCH (entity1 {title:line.title1}),(entity2 {title:line.title2}) CREATE (entity1)-[:XB { type: line.relation }]->(entity2)
+        LOAD CSV  WITH HEADERS FROM "file:///xianxaingbaojing.csv" AS line MATCH (entity1 {title:line.title1}),(entity2 {title:line.title2}) CREATE (entity1)-[:XJ { type: line.relation }]->(entity2)
 ### 2.修改Neo4j用户
 进入Shukongdashi/Model/neo_models.py,修改第8行的neo4j账号密码，改成你自己的
 ### 3.启动服务
 进入项目根目录，然后运行脚本：
-            python manage.py runserver 0.0.0.0:8000
+                python manage.py runserver 0.0.0.0:8000
 ## 系统功能
 
 ## 设计思路
