@@ -10,16 +10,16 @@
 >团队成员：王金萱、马佳慧
 ## 目录结构
     |--Shukongdashi\
-      --demo\
-        --checkpoints\
-        --data  //目录\
-      --Model\
-      --test_my\
-      --toolkit\
-      --settings.py\
-      --urls.py\
-      --view.py\
-      --wsgi.py\
+        --demo\
+            --checkpoints\
+            --data  //目录\
+        --Model\
+        --test_my\
+        --toolkit\
+        --settings.py\
+        --urls.py\
+        --view.py\
+        --wsgi.py\
 ## 项目配置
 
 ## 系统功能
