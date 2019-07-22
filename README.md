@@ -1,6 +1,5 @@
 
-            ├── question_wenda.py  //问答功能
-            ├── question_zhenduan.py  //故障诊断代码# Shukongdashi
+# Shukongdashi
 使用知识图谱，自然语言处理，卷积神经网络等技术，基于python语言，设计了一个数控领域故障诊断专家系统
 
 ## 项目介绍
@@ -43,7 +42,7 @@
                     ├── xianxiangxianxiang.csv  //故障现象和故障现象之间的关联关系
                     ├── xianxiangyuanyin.csv  //故障现象的间接故障原因
                     ├── yuanyin2.csv  //故障原因
-                    ├── zhuyu.csv  //故障部位
+                    └── zhuyu.csv  //故障部位
                 ├── cnn_model.py  //CNN配置
                 ├── guzhangfenxi.py  //构建Neo4j数据库用的数据
                 └── predict.py  //CNN预测识别故障描述类型
@@ -56,11 +55,18 @@
         ├── settings.py //配置访问端口等
         ├── urls.py //配置URL与python函数的映射
         ├── view.py //默认页面
-        ├── wsgi.py
+        └── wsgi.py
     ├── db.sqlite3
-    ├── manage.py   //Django框架项目启动入口
+    └── manage.py   //Django框架项目启动入口
 ## 项目配置
-
+### 0.安装基本环境：
+确保安装好python3和Neo4j（任意版本）
+### 1.导入数据：
+### 2.修改Neo4j用户
+进入Shukongdashi/Model/neo_models.py,修改第8行的neo4j账号密码，改成你自己的
+### 3.启动服务
+进入项目根目录，然后运行脚本：
+            python manage.py runserver 0.0.0.0:8000
 ## 系统功能
 
 ## 设计思路
