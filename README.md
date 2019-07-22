@@ -8,7 +8,7 @@
 >### 石家庄铁道大学软件工程系
 >团队名称：集结号\
 >指导教师：王建民\
->团队成员：王金萱、马佳慧
+>团队成员：王任义、王金萱、马佳慧
 ## 目录结构
     ├── Shukongdashi
         └── demo
@@ -60,7 +60,7 @@
     └── manage.py   //Django框架项目启动入口
 ## 项目配置
 ### 0.安装基本环境：
-确保安装好python3和Neo4j（任意版本）
+确保安装好python3和Neo4j（任意版本）\
 安装一系列pip依赖：
 ### 1.导入数据：
 开启neo4j，进入neo4j控制台。将Shukongdashi/test_my/test_cnnrnn/neo4/下的文件放入neo4j安装目录下的/import目录。在控制台依次输入：
@@ -86,8 +86,10 @@
 进入Shukongdashi/Model/neo_models.py,修改第8行的neo4j账号密码，改成你自己的
 ### 3.启动服务
 进入项目根目录，然后运行脚本：
-                python manage.py runserver 0.0.0.0:8000
+
+    python manage.py runserver 0.0.0.0:8000
 ## 系统功能
+
 
 ## 设计思路
 
