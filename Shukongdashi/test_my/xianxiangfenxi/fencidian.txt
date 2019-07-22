@@ -1,0 +1,13 @@
+FANUC
+SIEMENS
+YASKAW
+GE2000
+PLASMA
+OKUMA
+加工中心
+立式加工中心
+卧式加工中心
+数控车床
+数控滚齿机
+数控磨床
+落地镗床
