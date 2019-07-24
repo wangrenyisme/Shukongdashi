@@ -88,7 +88,8 @@
 
     python manage.py runserver 0.0.0.0:8000
 ## 系统功能
-
+构建的知识图谱效果如下图所示：\
+![知识图谱](https://github.com/wangrenyisme/Shukongdashi/tree/master/image/zhishiku.png)
 
 ## 设计思路
 
