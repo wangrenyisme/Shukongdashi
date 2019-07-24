@@ -90,7 +90,7 @@
 ## 系统功能
 构建的知识图谱效果如下图所示：\
 ![知识图谱](https://github.com/wangrenyisme/Shukongdashi/blob/master/image/zhishiku.png?raw=true)\
-#### 界面截图：(其中前台界面的代码不包含在本仓库中)\
+#### 界面截图：(其中前台界面的代码不包含在本仓库中)
 故障诊断和解决方法详细信息页面，关系图谱用于展示此结果的推理过程\
 <img src="https://raw.githubusercontent.com/wangrenyisme/Shukongdashi/master/image/Screenshot1.png" width="250" alt="截图">
 <img src="https://raw.githubusercontent.com/wangrenyisme/Shukongdashi/master/image/Screenshot2.png" width="250" alt="截图">
@@ -104,9 +104,33 @@
 <img src="https://raw.githubusercontent.com/wangrenyisme/Shukongdashi/master/image/Screenshot6.png" width="250" alt="截图">
 <img src="https://raw.githubusercontent.com/wangrenyisme/Shukongdashi/master/image/Screenshot7.png" width="250" alt="截图">
 
+#### 系统接口设计
+本系统采用前后端分离的技术，服务器端代码接收参数，处理后返回json格式的结果，前台进行展示。\
+后端服务器采用Django框架，前台使用APICloud技术\
+* 故障诊断接口
+        
+        //参数含义：pinpai：品牌  xinghao：型号  errorid：故障代码  question：故障描述  relationList：相关现象
+        //其中故障描述必须有，其他均可选，相关现象是在诊断出结果之后，用户反馈相关现象，再次进行诊断时用到的。多个相关现象中间用"|"分隔
+        http://127.0.0.1:8000/qa?pinpai=发那科&xinghao=MATE-TD&errorid=ALM401&question=自动换刀时刀链运转不到位，刀库停止运转&relationList=机床自动报警
+        ![截图](https://github.com/wangrenyisme/Shukongdashi/blob/master/image/zhenduan.png?raw=true)\
+* 在在线分析接口
+
+        //在线分析接口参数同故障诊断
+        http://127.0.0.1:8000/pa?pinpai=发那科&xinghao=MATE-TD&errorid=ALM401&question=自动换刀时刀链运转不到位，刀库停止运转&relationList=机床自动报警
+        ![截图](https://github.com/wangrenyisme/Shukongdashi/blob/master/image/paqu.png?raw=true)\
+        
+* 问答接口
+        
+        //基于知识图谱，目前支持四类问题的问答：某故障原因会引起哪些现象？执行某操作时会遇到哪些错误？某部位常发生的故障有哪些？某故障报警的含义是什么？
+        http://127.0.0.1:8000/wenda?question=外部24V短路的故障会引起哪些现象
+        ![截图](https://github.com/wangrenyisme/Shukongdashi/blob/master/image/wenda.png?raw=true)\
+* 反馈接口
+
+        http://127.0.0.1:8000/save?pinpai=发那科&xinghao=MATE-TD&errorid=ALM401&question=自动换刀时刀链运转不到位，刀库停止运转&relationList=机床自动报警&answer=使用时间较长,液压站的输出压力调得太高，导致联轴器的啮合齿损坏，从而当液压电动机旋转时,联轴器不能很好地传递转矩，从而产生异响。更换该联轴器后，机床恢复正常。
+
 ## 设计思路
 
-通过学习大量数控机床的历史维修案例，基于知识图谱、自然语言处理技术，融合规则推理，我们设计了一个越用越聪明的诊断数控机床故障专家系统。\
+系统的核心是围绕着构建知识库，通过拆分，将故障描述信息拆分成短文本的知识，构建关联关系。在使用过程中通过用户反馈，不断完善知识库的精度和广度。\
 首先，我们爬取了大量数控机床维修案例，使用NLP自然语言处理技术对文本做了噪声移除和句法分析，然后使用CNN卷积神经网络识别出了故障描述中用户所做的操作和出现的故障现象，结合词性标注，正则表达式处理等技术，最终提取出了故障描述中，对机床执行的操作，故障的现象，故障的部位，存在的报警信号。\
 基于Neo4j图数据库能够清晰的表示数据模型的优点，我们经过上面对故障描述的拆分和标注，表示出了做了什么操作会引起了什么故障现象，故障现象之间的并发或间接导致的关联关系，一个故障原因会间接或直接导致哪些故障现象的发生，机床的某个部位会出现的故障现象，报警代码和故障现象之间的关联，构成了知识图谱，使用基于规则的推理模型实现了我们的推理算法。\
 当一个新的故障发生时，通过分析，如果现有的知识不能解决新的故障，这时通过在线分析，爬取解决方案，通过用户人为反馈和语料库对比分析程序，确认结果可靠之后，分析当前的故障描述，原理同上述构建知识库的过程，拆分之后，对新的知识进行补充，对已经存在的知识，进一步完善和优化，最终实现知识库的自学习功能。\
