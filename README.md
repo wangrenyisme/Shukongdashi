@@ -90,12 +90,15 @@
 ## 系统功能
 构建的知识图谱效果如下图所示：\
 ![知识图谱](https://github.com/wangrenyisme/Shukongdashi/blob/master/image/zhishiku.png?raw=true)\
-界面截图：(其中前台界面的代码不包含在本仓库中)\
+#### 界面截图：(其中前台界面的代码不包含在本仓库中)\
+故障诊断和解决方法详细信息页面，关系图谱用于展示此结果的推理过程\
 <img src="https://raw.githubusercontent.com/wangrenyisme/Shukongdashi/master/image/Screenshot1.png" width="250" alt="截图">
 <img src="https://raw.githubusercontent.com/wangrenyisme/Shukongdashi/master/image/Screenshot2.png" width="250" alt="截图">
 <img src="https://raw.githubusercontent.com/wangrenyisme/Shukongdashi/master/image/Screenshot3.png" width="250" alt="截图">
+在线分析爬取网上的解决方法，查看详细信息，反馈功能\
 <img src="https://raw.githubusercontent.com/wangrenyisme/Shukongdashi/master/image/Screenshot4.png" width="250" alt="截图">
 <img src="https://raw.githubusercontent.com/wangrenyisme/Shukongdashi/master/image/Screenshot5.png" width="250" alt="截图">
+智能问答功能\
 <img src="https://raw.githubusercontent.com/wangrenyisme/Shukongdashi/master/image/Screenshot6.png" width="250" alt="截图">
 <img src="https://raw.githubusercontent.com/wangrenyisme/Shukongdashi/master/image/Screenshot7.png" width="250" alt="截图">
 ## 设计思路
