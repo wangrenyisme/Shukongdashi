@@ -112,18 +112,19 @@
         //参数含义：pinpai：品牌  xinghao：型号  errorid：故障代码  question：故障描述  relationList：相关现象
         //其中故障描述必须有，其他均可选，相关现象是在诊断出结果之后，用户反馈相关现象，再次进行诊断时用到的。多个相关现象中间用"|"分隔
         http://127.0.0.1:8000/qa?pinpai=发那科&xinghao=MATE-TD&errorid=ALM401&question=自动换刀时刀链运转不到位，刀库停止运转&relationList=机床自动报警
-        ![截图](https://github.com/wangrenyisme/Shukongdashi/blob/master/image/zhenduan.png?raw=true)\
+        
+![截图](https://github.com/wangrenyisme/Shukongdashi/blob/master/image/zhenduan.png?raw=true)\
 * 在在线分析接口
 
         //在线分析接口参数同故障诊断
         http://127.0.0.1:8000/pa?pinpai=发那科&xinghao=MATE-TD&errorid=ALM401&question=自动换刀时刀链运转不到位，刀库停止运转&relationList=机床自动报警
-        ![截图](https://github.com/wangrenyisme/Shukongdashi/blob/master/image/paqu.png?raw=true)\
+![截图](https://github.com/wangrenyisme/Shukongdashi/blob/master/image/paqu.png?raw=true)\
         
 * 问答接口
         
         //基于知识图谱，目前支持四类问题的问答：某故障原因会引起哪些现象？执行某操作时会遇到哪些错误？某部位常发生的故障有哪些？某故障报警的含义是什么？
         http://127.0.0.1:8000/wenda?question=外部24V短路的故障会引起哪些现象
-        ![截图](https://github.com/wangrenyisme/Shukongdashi/blob/master/image/wenda.png?raw=true)\
+![截图](https://github.com/wangrenyisme/Shukongdashi/blob/master/image/wenda.png?raw=true)\
 * 反馈接口
 
         http://127.0.0.1:8000/save?pinpai=发那科&xinghao=MATE-TD&errorid=ALM401&question=自动换刀时刀链运转不到位，刀库停止运转&relationList=机床自动报警&answer=使用时间较长,液压站的输出压力调得太高，导致联轴器的啮合齿损坏，从而当液压电动机旋转时,联轴器不能很好地传递转矩，从而产生异响。更换该联轴器后，机床恢复正常。
