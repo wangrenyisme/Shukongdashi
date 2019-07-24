@@ -94,10 +94,6 @@
 ![截图](https://github.com/wangrenyisme/Shukongdashi/blob/master/image/Screenshot1.png)
 ![截图](https://github.com/wangrenyisme/Shukongdashi/blob/master/image/Screenshot2.png)
 ![截图](https://github.com/wangrenyisme/Shukongdashi/blob/master/image/Screenshot3.png)
-![截图](https://github.com/wangrenyisme/Shukongdashi/tree/master/image/Screenshot4.png)
-![截图](https://github.com/wangrenyisme/Shukongdashi/tree/master/image/Screenshot5.png)
-![截图](https://github.com/wangrenyisme/Shukongdashi/tree/master/image/Screenshot6.png)
-![截图](https://github.com/wangrenyisme/Shukongdashi/tree/master/image/Screenshot7.png)
 .<img src="https://github.com/wangrenyisme/Shukongdashi/blob/master/image/Screenshot1.png" width="200" />
 .<img src="https://github.com/wangrenyisme/Shukongdashi/blob/master/image/Screenshot2.png" width="200" />
 .<img src="https://github.com/wangrenyisme/Shukongdashi/blob/master/image/Screenshot3.png" width="200" />
