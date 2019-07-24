@@ -106,7 +106,7 @@
 
 #### 系统接口设计
 本系统采用前后端分离的技术，服务器端代码接收参数，处理后返回json格式的结果，前台进行展示。\
-后端服务器采用Django框架，前台使用APICloud技术\
+后端服务器采用Django框架，前台使用APICloud技术
 * 故障诊断接口
         
         //参数含义：pinpai：品牌  xinghao：型号  errorid：故障代码  question：故障描述  relationList：相关现象
