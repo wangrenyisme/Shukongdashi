@@ -95,12 +95,15 @@
 <img src="https://raw.githubusercontent.com/wangrenyisme/Shukongdashi/master/image/Screenshot1.png" width="250" alt="截图">
 <img src="https://raw.githubusercontent.com/wangrenyisme/Shukongdashi/master/image/Screenshot2.png" width="250" alt="截图">
 <img src="https://raw.githubusercontent.com/wangrenyisme/Shukongdashi/master/image/Screenshot3.png" width="250" alt="截图">
+
 在线分析爬取网上的解决方法，查看详细信息，反馈功能\
 <img src="https://raw.githubusercontent.com/wangrenyisme/Shukongdashi/master/image/Screenshot4.png" width="250" alt="截图">
 <img src="https://raw.githubusercontent.com/wangrenyisme/Shukongdashi/master/image/Screenshot5.png" width="250" alt="截图">
+
 智能问答功能\
 <img src="https://raw.githubusercontent.com/wangrenyisme/Shukongdashi/master/image/Screenshot6.png" width="250" alt="截图">
 <img src="https://raw.githubusercontent.com/wangrenyisme/Shukongdashi/master/image/Screenshot7.png" width="250" alt="截图">
+
 ## 设计思路
 
 通过学习大量数控机床的历史维修案例，基于知识图谱、自然语言处理技术，融合规则推理，我们设计了一个越用越聪明的诊断数控机床故障专家系统。\
