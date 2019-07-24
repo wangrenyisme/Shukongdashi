@@ -91,13 +91,13 @@
 构建的知识图谱效果如下图所示：\
 ![知识图谱](https://github.com/wangrenyisme/Shukongdashi/blob/master/image/zhishiku.png?raw=true)\
 界面截图：(其中前台界面的代码不包含在本仓库中)\
-![截图](https://github.com/wangrenyisme/Shukongdashi/blob/master/image/Screenshot1.png)
-![截图](https://github.com/wangrenyisme/Shukongdashi/blob/master/image/Screenshot2.png)
-![截图](https://github.com/wangrenyisme/Shukongdashi/blob/master/image/Screenshot3.png)
-![截图](https://github.com/wangrenyisme/Shukongdashi/blob/master/image/Screenshot4.png)
-![截图](https://github.com/wangrenyisme/Shukongdashi/blob/master/image/Screenshot5.png)
-![截图](https://github.com/wangrenyisme/Shukongdashi/blob/master/image/Screenshot6.png)
-![截图](https://github.com/wangrenyisme/Shukongdashi/blob/master/image/Screenshot7.png)
+![截图](https://github.com/wangrenyisme/Shukongdashi/blob/master/image/Screenshot1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/50)
+![截图](https://github.com/wangrenyisme/Shukongdashi/blob/master/image/Screenshot2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/50)
+![截图](https://github.com/wangrenyisme/Shukongdashi/blob/master/image/Screenshot3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/50)
+![截图](https://github.com/wangrenyisme/Shukongdashi/blob/master/image/Screenshot4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/50)
+![截图](https://github.com/wangrenyisme/Shukongdashi/blob/master/image/Screenshot5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/50)
+![截图](https://github.com/wangrenyisme/Shukongdashi/blob/master/image/Screenshot6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/50)
+![截图](https://github.com/wangrenyisme/Shukongdashi/blob/master/image/Screenshot7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/50)
 
 ## 设计思路
 
