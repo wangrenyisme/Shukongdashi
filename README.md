@@ -89,14 +89,11 @@
     python manage.py runserver 0.0.0.0:8000
 ## 系统功能
 构建的知识图谱效果如下图所示：\
-![知识图谱](https://github.com/wangrenyisme/Shukongdashi/blob/master/image/zhishiku.png?raw=true)
+![知识图谱](https://github.com/wangrenyisme/Shukongdashi/blob/master/image/zhishiku.png?raw=true)\
 界面截图：(其中前台界面的代码不包含在本仓库中)\
-![截图](https://github.com/wangrenyisme/Shukongdashi/blob/master/image/Screenshot1.png)
-![截图](https://github.com/wangrenyisme/Shukongdashi/blob/master/image/Screenshot2.png)
-![截图](https://github.com/wangrenyisme/Shukongdashi/blob/master/image/Screenshot3.png)
-.<img src="https://github.com/wangrenyisme/Shukongdashi/blob/master/image/Screenshot1.png" width="200" />
-.<img src="https://github.com/wangrenyisme/Shukongdashi/blob/master/image/Screenshot2.png" width="200" />
-.<img src="https://github.com/wangrenyisme/Shukongdashi/blob/master/image/Screenshot3.png" width="200" />
+![截图](https://github.com/wangrenyisme/Shukongdashi/row/master/image/Screenshot1.png)
+![截图](https://github.com/wangrenyisme/Shukongdashi/row/master/image/Screenshot2.png)
+![截图](https://github.com/wangrenyisme/Shukongdashi/row/master/image/Screenshot3.png)
 ## 设计思路
 
 通过学习大量数控机床的历史维修案例，基于知识图谱、自然语言处理技术，融合规则推理，我们设计了一个越用越聪明的诊断数控机床故障专家系统。\
