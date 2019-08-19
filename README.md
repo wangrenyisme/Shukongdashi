@@ -57,6 +57,8 @@
         └── wsgi.py
     ├── db.sqlite3
     └── manage.py   //Django框架项目启动入口
+
+关于CNN训练模型的模块请参考gaussic的[text-classification-cnn-rnn](https://github.com/gaussic/text-classification-cnn-rnn)
 ## 项目配置
 ### 0.安装基本环境：
 确保安装好python3和Neo4j（任意版本）\
