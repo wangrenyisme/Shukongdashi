@@ -58,7 +58,8 @@
     ├── db.sqlite3
     └── manage.py   //Django框架项目启动入口
 
-关于CNN训练模型的模块请参考[@gaussic](https://github.com/crownpku)的[text-classification-cnn-rnn](https://github.com/gaussic/text-classification-cnn-rnn)项目
+  关于CNN训练模型的模块请参考[@gaussic](https://github.com/crownpku)的[text-classification-cnn-rnn](https://github.com/gaussic/text-classification-cnn-rnn)项目。通过训练模型，可以实现预测文本内容的分类。\
+  在我们的项目中，我们将数控机床维修案例的文本数据切分之后，手动标注了两千多条数据，用来做训练，标注的文本见**Shukongdashi/test_my/xianxiangfenxi/biaozhu_minming.txt**
 ## 项目配置
 ### 0.安装基本环境：
 确保安装好python3和Neo4j（任意版本）\
