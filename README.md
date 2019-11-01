@@ -9,7 +9,7 @@
 感谢[TVTyuVEN](https://github.com/TVTyuVEN/)为该项目画的构建知识图谱的流程图：\
 ![知识图谱构建过程](https://github.com/wangrenyisme/Shukongdashi/blob/master/image/zhishitupu.jpg?raw=true)\
 感谢田翠霞小姐姐画的故障诊断过程图：\
-![故障诊断过程](https://github.com/wangrenyisme/Shukongdashi/blob/master/image/tuili.jpg?raw=true)\
+![故障诊断过程](https://github.com/wangrenyisme/Shukongdashi/blob/master/image/tuili.jpg?raw=true)
 >团队名称：集结号\
 >指导教师：王建民\
 >团队成员：王任义、王金萱、马佳慧
@@ -62,7 +62,7 @@
         └── wsgi.py
     ├── db.sqlite3
     └── manage.py   //Django框架项目启动入口
-(PS：目录树在Windows系统中通过tree命令可以生成，不要学我手动打出来才知道。)
+(PS：目录树在Windows系统中通过tree命令可以生成，不要学我手动打出来才知道。)\
   关于CNN训练模型的模块请参考[@gaussic](https://github.com/crownpku)的[text-classification-cnn-rnn](https://github.com/gaussic/text-classification-cnn-rnn)项目。通过训练模型，可以实现预测文本内容的分类。\
   在我们的项目中，我们将数控机床维修案例的文本数据切分之后，手动标注了两千多条数据，用来做训练，标注的文本见**Shukongdashi/test_my/xianxiangfenxi/biaozhu_minming.txt**
 ## 项目配置
