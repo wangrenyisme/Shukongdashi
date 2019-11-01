@@ -9,6 +9,7 @@
 >团队名称：集结号\
 >指导教师：王建民\
 >团队成员：王任义、王金萱、马佳慧\
+
 感谢[TVTyuVEN](https://github.com/TVTyuVEN/)为该项目画的构建知识图谱的流程图：\
 ![知识图谱构建过程](https://github.com/wangrenyisme/Shukongdashi/blob/master/image/zhishitupu.jpg?raw=true)\
 感谢田翠霞小姐姐画的故障诊断过程图：\
