@@ -1,0 +1,282 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>Hello APP</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+
+    <script type="text/javascript" src="../script/api.js"></script>
+    <script type="text/javascript" src="../script/echarts.min.js"></script>
+    <script type="text/javascript" src="../script/jquery-3.0.0.min.js"></script>
+    <script type="text/javascript" src="../script/contrasqw.js"></script>
+    <script type="text/javascript" src="../script/d3.v3.min.js"></script>
+    <!-- <script type="text/javascript" src="../script/mainjs.js"></script> -->
+
+	<style>
+		*{
+			font-size: 16px;
+
+		}
+
+		#histogramParent{
+			width: 430px;
+			height: 460px;
+
+		}
+
+		#histogramParent__zhexian{
+			width: 430px;
+			height: 460px;
+		}
+	</style>
+</head>
+<body>
+	<div id="histogramParent" >
+      <input type="text" style="margin-top:-1px;margin-left:50px;border: 1px red;width:15px;height:15px;background-Color:#CC0000;"/>
+      <input type="text" style="border:1px ;width:15px;height:15px;background-Color:#CC66FF;margin-left:18px"/>
+      <input type="text" style="margin-top:-1px;border:1px ;width:15px;height:15px;background-Color:#99CCFF;margin-left:18px"/>
+      <input type="text" style="margin-top:-1px;border: 1px ;width:15px;height:15px;background-Color:#97980e;margin-left:34px"/>
+      <input type="text" style="margin-top:-1px;border: 1px ;width:15px;height:15px;background-Color:#888888;margin-left:34px"/>
+      <input type="text" style="margin-top:-1px;border: 1px ;width:15px;height:15px;background-Color:#FA8072;margin-left:34px"/>
+      <p style="font-size:4px;margin-top:-11px;margin-left:70px">品牌</p>
+      <p style="font-size:4px;margin-top:-13px;margin-left:106px">型号</p>
+      <p style="font-size:4px;margin-top:-13px;margin-left:144px">故障代码</p>
+      <p style="font-size:4px;margin-top:-13px;margin-left:194px">故障类型</p>
+      <p style="font-size:4px;margin-top:-13px;margin-left:246px">解决方法</p>
+      <p style="font-size:4px;margin-top:-13px;margin-left:299px">故障描述</p>
+		<div style="width:{width};height:{height};margin:auto;top:30px;margin-top:-25px" id="histogramParent__zhexian">
+
+
+		</div>
+
+	</div>
+</body>
+
+<script type="text/javascript">
+apiready = function(){
+  //获取上一页面传来的数据（包括机床品牌、型号、故障代码和故障描述）
+  //  brand = api.pageParam.brand;
+  //  xinghao = api.pageParam.xinghao;
+  //  errorid = api.pageParam.errorid;
+  //  describe = api.pageParam.describe;
+  //  describe = '循环使用被禁止';
+
+  resChuanCan = api.pageParam.resChuanCan;
+  alert('传到图页面的参-'+resChuanCan);
+  alert(typeof resChuanCan);
+  var a = eval(resChuanCan);
+  alert(typeof a);
+  alert(a.answer[0]);
+
+   var resultData = '';//全局的数据
+   $(function(){
+       resultData = data;
+       histogram('histogramParent__zhexian', resultData.monthSalsePickPrePart[0],eval(resChuanCan));
+   });
+
+
+
+  // 访问服务器端数据
+      // api.ajax({
+      //           url: 'http://120.77.37.120:8000/qa?pinpai=' +brand +  '&xinghao=' + xinghao + '&errorid=' +errorid + '&question=' + describe, // 请求数据库的接口     http://120.77.37.120:8000/pa?question=数控机床主轴温度过高
+      //           method: 'get',
+      //           headers:{
+      //             'Content-Type': 'application/json;charset=utf-8'
+      //           },
+      //         }, function(ret, err) {
+      //         if (ret) { //ret是Object数据类型  想转换为String：res = $api.jsonToStr(ret);（）该方法可获得服务器端的完整返回数据
+      //           api.alert('tu-'+{msg:JSON.stringify(ret)});
+      //           res = eval(ret);
+      //           // var value1 =  {"list": [{"entity1": "广州数控", "rel": "型号", "entity2": "GSK980TD", "entity1_type": "品牌", "entity2_type": "型号"}, {"entity1": "GSK980TD", "rel": "故障代码", "entity2": "64", "entity1_type": "型号", "entity2_type": "故障代码"}, {"entity1": "64", "rel": "故障描述", "entity2": "G70~G73循环结束段使用了被禁止使用的 G指令 ", "entity1_type": "故障代码", "entity2_type": "故障描述"}, {"entity1": "G70~G73循环结束段使用了被禁止使用的 G指令 ", "rel": "故障类型", "entity2": "CNC报警", "entity1_type": "故障描述", "entity2_type": "故障类型"}, {"entity1": "G70~G73循环结束段使用了被禁止使用的 G指令 ", "rel": "解决方法", "entity2": "按复位键消除报警 , 再修改程序", "entity1_type": "故障描述", "entity2_type": "解决方法"}], "answer": ["按复位键消除报警 , 再修改程序"], "similar": ["97.62%"]}
+      //           var resultData = '';//全局的数据
+      //
+      //               resultData = data;
+      //               histogram('histogramParent__zhexian', resultData.monthSalsePickPrePart[0],res);
+      //
+      //
+      //         } else {
+      //           api.alert({msg:JSON.stringify(err)});
+      //           var answerShow = document.getElementById('answerBox');
+      //           answerShow.innerHTML += '<div>抱歉，未检索到解决方案</div>';
+      //           api.toast({
+      //             msg: '未检索到解决方案',
+      //             duration: 2000,
+      //             location: 'bottom'
+      //           });
+      //         }
+      //
+      //       // 隐藏加载状态对话框
+      //       api.hideProgress();
+      //     });
+    };
+
+
+
+    // var resultData = '';//全局的数据
+    // $(function(){
+    //     resultData = data;
+    //     histogram('histogramParent__zhexian', resultData.monthSalsePickPrePart[0]);
+    // });
+
+
+
+    function histogram(id, obj, jsonResult) {
+      alert('jsonResult---'+jsonResult);
+        var yearList = [], qtyList = [];//年份，重量集合
+        var color = "#92DCFB";
+        for (var i in obj.detail) {
+            yearList.push(obj.detail[i].title);
+            qtyList.push(obj.detail[i].value);
+        }
+
+        var myChart = echarts.init($api.byId(id));
+        var listdata = new Array();
+        var  listlink=new Array();
+        var locax=new Array(300,800,550,550,250,400,800,700);
+        var locay=new Array(300,300,100,500,800,-150,100,200)
+        // var value1 =  {"list": [{"entity1": "广州数控", "rel": "型号", "entity2": "GSK980TD", "entity1_type": "品牌", "entity2_type": "型号"}, {"entity1": "GSK980TD", "rel": "故障代码", "entity2": "64", "entity1_type": "型号", "entity2_type": "故障代码"}, {"entity1": "64", "rel": "故障描述", "entity2": "G70~G73循环结束段使用了被禁止使用的 G指令 ", "entity1_type": "故障代码", "entity2_type": "故障描述"}, {"entity1": "G70~G73循环结束段使用了被禁止使用的 G指令 ", "rel": "故障类型", "entity2": "CNC报警", "entity1_type": "故障描述", "entity2_type": "故障类型"}, {"entity1": "G70~G73循环结束段使用了被禁止使用的 G指令 ", "rel": "解决方法", "entity2": "按复位键消除报警 , 再修改程序", "entity1_type": "故障描述", "entity2_type": "解决方法"}], "answer": ["按复位键消除报警 , 再修改程序"], "similar": ["97.62%"]}
+
+          var obj1 = jsonResult.list;//json转化可用的
+          var defin="";//用于存储节点
+          var rnd=1,rnd2=2;
+          var strtip="";
+          var col="";
+          for(var i =0;i<obj1.length;i++){
+            pan1=defin.indexOf(obj1[i].entity1) != -1
+            pan2=defin.indexOf(obj1[i].entity2) != -1
+
+            if(pan1==false){//判断该节点名字是否已经存上了
+              defin+=obj1[i].entity1
+              if(obj1[i].entity1.length>9){
+                  strtip=obj1[i].entity1;
+                  obj1[i].entity1=obj1[i].entity1.substring(0,5)+"...";
+                }
+                if(obj1[i].entity1_type=="品牌")  col="#CC0000";
+                if(obj1[i].entity1_type=="型号")  col="#CC66FF";
+                if(obj1[i].entity1_type=="故障代码")  col="#99CCFF";
+                if(obj1[i].entity1_type=="故障类型")  col="#97980e";
+                if(obj1[i].entity1_type=="解决方法")  col="#888888";
+                if(obj1[i].entity1_type=="故障描述")  col="#FA8072";
+              tem={
+                  name: obj1[i].entity1,
+                  x: locax[i],
+                  y: locay[i],
+                  label: {
+                     normal: {
+                         show: true
+                     }
+                 },
+                  itemStyle: {
+                        normal: {
+                            color:col,
+                        }
+                    },
+                  tooltip:strtip
+              };
+              listdata.push(tem);
+            }
+            if(pan2==false){//判断该节点名字是否已经存上了
+              defin+=obj1[i].entity2;
+              if(obj1[i].entity2.length>9){
+                  strtip=obj1[i].entity2;
+                  obj1[i].entity2=obj1[i].entity2.substring(0,5)+"...";
+                }
+                if(obj1[i].entity2_type=="品牌")  col="#CC0000";
+                if(obj1[i].entity2_type=="型号")  col="#CC66FF";
+                if(obj1[i].entity2_type=="故障代码")  col="#99CCFF";
+                if(obj1[i].entity2_type=="故障类型")  col="#97980e";
+                if(obj1[i].entity2_type=="解决方法")  col="#888888";
+                if(obj1[i].entity2_type=="故障描述")  col="#FA8072";
+              tem1={
+                  name: obj1[i].entity2,
+                  x: locax[7-i],
+                  y: locay[7-i],
+                  label: {
+                     normal: {
+                         show: true
+                     }
+                 },
+                  itemStyle: {
+                        normal: {
+                            color: col,
+                        }
+                    },
+                  tooltip:strtip
+              };
+              listdata.push(tem1);
+            }
+          }
+          for(var i =0;i<obj1.length;i++){
+            if(obj1[i].entity1.length>9)
+                obj1[i].entity1=obj1[i].entity1.substring(0,5)+"...";
+            if(obj1[i].entity2.length>9)
+                obj1[i].entity2=obj1[i].entity2.substring(0,5)+"...";
+            tem4= {//两张写法
+                source: obj1[i].entity1,
+                target: obj1[i].entity2,
+                label: {
+                     normal: {
+                         show: true,
+                         formatter: obj1[i].rel
+                     }
+                 },
+                lineStyle: {
+                    normal: { curveness: 0.2 }
+                }
+            };
+            listlink.push(tem4);
+          }
+
+        var app = {};
+        option = null;
+
+        option = {
+          backgroundColor: '#eee',
+        title: {
+            text: '关系图谱'
+        },
+        tooltip: {},
+        animationDurationUpdate: 550,
+        animationEasingUpdate: 'quinticInOut',
+        series : [
+            {
+                type: 'graph',
+                layout: 'none',
+                symbolSize: 50,
+                roam: true,
+                label: {
+                    normal: {
+                        show: true
+                    }
+                },
+                edgeSymbol: ['circle', 'arrow'],
+                edgeSymbolSize: [4, 10],
+                edgeLabel: {
+                    normal: {
+                        textStyle: {
+                            fontSize: 10
+                        }
+                    }
+                },
+                data: listdata,
+                // links: [],
+                links: listlink,
+                lineStyle: {
+                    normal: {
+                        opacity: 0.9,
+                        width: 2,
+                        curveness: 0
+                    }
+                }
+            }
+        ]
+
+    };
+        if (option && typeof option === "object") {
+            myChart.setOption(option, true);
+        }
+    }
+</script>
+</html>

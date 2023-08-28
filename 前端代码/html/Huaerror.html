@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>title</title>
+		<link rel="stylesheet" type="text/css" href="../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../css/api.css" />
+  	<link rel="stylesheet" type="text/css" href="../css/aui.css" />
+	  <script type="text/javascript" src="../script/aui-toast.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/api1.css" />
+		<style>
+			body {
+			}
+			html, body {
+				height: 100%
+			}
+			body {
+				background-color: #fff;
+				margin: 0;
+			}
+			#wrap {
+				height: 2000px;
+				position: relative;
+			}
+		.hdiv {
+				padding-top: 20px;
+				background-color: #f2f2f2;
+				height: 20px;
+				position: relative;
+			}
+			#header h1 {
+				font-size: 20px;
+				height: 44px;
+				line-height: 44px;
+				margin: 0em;
+				color: #fff;
+				margin-left: 100px;
+				margin-right: 100px;
+				text-align: center;
+			}
+			#main {
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-box-pack: center;
+			}
+			a.button {
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-box-pack: center;
+				-webkit-box-align: center;
+				height: 32px;
+				margin: 8px;
+				background-color: rgba(240, 240, 240, 1.0);
+				border-color: rgba(220, 220, 220, 1.0);
+				border-width: 2px;
+				border-style: solid;
+			}
+			a.active {
+				background-color: rgba(240, 240, 240, 0.7);
+			}
+
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-light" style="height:75px">
+            <div class="aui-pull-left aui-btn" onclick="goback()" style="height:75px">
+
+            </div>
+            <div class="aui-title" style="margin-top:26px">错误列表一览</div>
+        </header>
+  <div class="empty"></div>
+<div id="aa"></div>
+	</body>
+
+	<script type="text/javascript" src="../script/api.js"></script>
+	<script type="text/javascript">
+	function goback () {
+	   api.closeWin({name:'Huaerror'});
+	 }
+
+  apiready = function() {
+		var demo;
+		var brand = api.pageParam.brand;//判断被点击的错误类型是哪个
+		var listdata = new Array();
+  	var arrayObj1 = new Array(
+			'屏幕没有显示',
+		'屏幕没有显示但工程面板能正常控制',
+		'DOS 系统不能启动',
+		'不能进入数控主菜单',
+		'进入数控主菜单后黑屏',
+		'运行或操作中出现死机或重新启动',
+		'开机后系统报坐标轴机床位置丢失',
+		'系统始终保持急停状态不能产生复位信号',
+		'系统始终保持复位状态',
+		'系统可以手动运行但无法切换到自动或单段状态',
+		'系统跟踪误差过大或定位误差过大',
+		'回零 ( 回参考点 ) 时报硬件故障',
+		'回零 ( 回参考点 ) 时坐标轴无反应',
+		'回零 ( 回参考点 ) 时坐标轴反向低速移动直到压到超程限位开关',
+		'回零 ( 回参考点 ) 精度差',
+		'两次回参考点机床位置相差一个整螺距',
+		'打开急停开关后升降轴自动下滑',
+		'伺服电机抱闸无法打开或不稳定',
+		'系统无手摇工作方式',
+		'系统有手摇工作方式但手摇无反应',
+		'接通伺服驱动器动力电源立即出现报警',
+		'伺服电机静止时抖动',
+		'伺服电机缓慢转动零漂',
+		'电机不运转',
+		'电机只能运行一小段距离',
+		'电机运转时跳动',
+		'电机爬行',
+		'电机轴输出扭矩很小',
+		'主轴超速或不可控',
+		'主轴不转',
+		'主轴不能定向停',
+		'主轴定向停的位置不准确',
+		'刀架正转不停',
+		'刀架能选刀，但刀架偏了一个角度',
+		'车螺纹不能执行',
+		'加工螺纹 ( 功丝 ) 时，有乱丝现象',
+		'功丝不能执行',
+		'采用小线段加工时有停顿现象'
+	)
+
+	   for(var i=0;i<arrayObj1.length;i++){
+			 arr=arrayObj1[i].split(":");
+			 tem = {
+			 uid : '1001',
+			 imgPath : 'widget://image/33.jpg',
+			 title : arr[0],
+			 subTitle : arr[1],
+			 remark : '查看详情',
+			 icon : '',
+			 id:'2'
+			 }
+			   listdata.push(tem);
+		 }
+
+
+		//下面定义列表
+			demo = api.require('UIListView');
+			$api.dom('.empty').innerHTML =
+			demo.open({
+				rect : {
+					x : 0,
+					y : 77,//调节列表距离顶部的长度
+					w : api.winWidth,
+					h : api.frameHeight
+				},
+				data : listdata,
+				styles : {
+					borderColor : '#696969',
+					item : {
+						bgColor : '#F5F5F5',
+						activeBgColor : '#AFEEEE',
+						height : 55.0,
+						marginTop:-255,
+						imgWidth : 40,
+						imgHeight : 40,
+						imgCorner : 4,
+						placeholderImg : '',
+						titleSize : 12.0,
+						titleColor : '#000',
+						subTitleSize : 12.0,
+						subTitleColor : '#000',
+						remarkColor : '#000',
+						remarkSize : 16,
+						remarkIconWidth : 30
+					}
+				},
+				fixedOn : api.frameName
+			}, function(ret, err) {
+				if (ret) {
+					 //alert(JSON.stringify(ret));
+					 var str = JSON.stringify(ret);
+					 //alert(JSON.stringify(ret)+"ca");
+					 if(str.indexOf("index")!=-1)
+								 str = str.match(/"index":(\S*)}/)[1];//获取索引
+					 if(JSON.stringify(ret).indexOf("index")!=-1){
+							 //alert(str+"111111")
+           demo.onclick=  api.openWin({
+									name: 'HuaAns',
+									url: './HuaAns.html',
+				          pageParam: {
+				              error:str,
+											type:brand,
+				         }
+				      });
+						}
+
+				} else {
+					alert(JSON.stringify(err));
+				}
+			});
+		};
+
+
+	</script>
+
+</html>

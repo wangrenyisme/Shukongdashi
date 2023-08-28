@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>推理结果</title>
+	<link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../css/api.css" />
+		    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+		    <script type="text/javascript" src="../script/aui-toast.js"></script>
+	<style>
+	/* 头部样式 */
+	.topbar {background: #FF8400; height:50px; border-bottom: 1px solid #DDDFE3;}
+	.topbar_title {display: inline-block;font-size: 20px; line-height: 50px;padding-left: 12px;}
+	.hr01, .hr02 {height: 28px;}
+	.headerico {padding: 11px 15px 11px 15px;}
+	.headericohover {background: #DADDE0;}
+	.fr{float: right;}
+	.fl{float: left;}
+
+	/*第一头部*/
+	#logo {padding: 11px 0 0 10px;height: 28px;}
+	#citylist {height: 50px; line-height: 50px;padding-left: 15px; font-size: 18px; color: #fff;}
+	.citylistarrow {vertical-align: top; width: 20px; padding-top: 15px;}
+ .search {height: 34px;line-height: 34px; padding-left: 10px; border-radius: 30px;  margin-top: 8px; position: absolute; left: 20px; right: 60px;font-size: 14px;}
+ .search img:first-child {vertical-align: top; width: 20px; padding-top: 7px;padding-right: 10px;}
+ .search img:last-child {vertical-align: top; width: 20px; padding-top: 7px;}
+ .firstSearch {left: 90px;right: 60px;background-color: #FA6604;color: #FDC29B;}
+
+	/* 第二头部 */
+	#topbar_refresh {width: 40px;padding:5px 10px;}
+	.whitebar {background-color: #fcfcfc;}
+	#whitecity {height: 50px; line-height: 50px;padding-left: 15px; font-size: 18px;color: #FF8400;}
+ .secCitylistarrow {vertical-align: top; width: 15px; padding-top: 18px;padding-left: 5px;}
+ .secSearch {left: 90px;right: 15px;background-color: #E8E8E8;color: #999;}
+
+ /* 第三头部 */
+ .swipepic {padding: 5px 15px 2px 15px;height: 23px;}
+ .swipe div {font-size: 4px; text-align: center;color: #999;}
+ .thrSearch {left: 50px;right: 60px;background-color: #E8E8E8;color: #999;}
+
+	/* 头部切换样式 */
+	.activebar {display: block;}
+
+	/* 底部切换按钮样式 */
+	ul {display: -webkit-box; display: -webkit-flex; display: flex; }
+	#footer {height: 61px; line-height: 60px; background-color: #FAFAFA;border-top: 1px solid #FAFAFA; }
+	#footer li{-webkit-box-flex: 1; -webkit-flex: 1; flex:1; height: 60px;}
+
+	/* 选项卡样式 */
+	.scrollbar {display: -webkit-box;display: -webkit-flex; text-align: center; height: 40px; line-height: 40px;background: #EBECF0;font-size: 12px;position: relative;}
+	.col1 {-webkit-box-flex:1;-webkit-flex: 1;flex:1;color: #909090;}
+	.indexbar {position: absolute;/*background: #0fc;*/width: 50%;height: 5px;left: 0px;bottom: 0px;-webkit-transition: 300ms;}
+	.redbox {background: #DB4646;width: 40px;height: 5px;position: relative;left: auto;right: auto; margin-left: auto; margin-right: auto;}
+
+
+	/* 本地刷新图标 */
+	#localrefresh {display:none;float: right; width: 40px; padding: 5px 10px;}
+	#field1::-webkit-input-placeholder { color:#666; }
+	#field1 {height: 30px; line-height: 30px; width: 70%;}
+
+	.swipe {line-height: 50px;margin-right: 10px;color: #FF8400;}
+	.back {float: left; }
+	.back img {height: 30px; margin-top: 10px; margin-left: 10px; margin-bottom: 6px; margin-right: 30px;}
+	.topbar .title {line-height: 50px;font-size: 22px;position: absolute;left: 50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);}
+
+
+	/*查询结果list*/
+	html,body{
+		-webkit-touch-callout:none;
+		-webkit-text-size-adjust:none;
+		-webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+		-webkit-user-select:none;
+	}
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .innerBox {
+            display: block;
+            width: 100%;
+        }
+        .innerBox li {
+            width: 100%;
+            height: 60px;
+            background: #FFFFFF;
+            display: -webkit-box;
+            -webkit-box-align: center;
+            font-size: 15px;
+            border-bottom: 1px solid #CDCCD1;
+        }
+        .smallFont{
+            font-size: 13px;
+            color: #bebebe;
+        }
+        .flex1{
+            -webkit-box-flex:1;
+        }
+
+			.distance {-webkit-Ebox-flex: 1; box-flex: 1; -ms-box-flex: 1; -ms-flex: 1; text-align: right; line-height: 10px; margin-top: 5px; color: #999; float: right;font-size: 12px;}
+
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<!-- 第三头部 -->
+		<div id="thridHeader" class="titlebar" style="height:75px">
+			<div class="topbar whitebar" style="height:75px">
+				<div class="back"  tapmode="" onclick="goback()"  style="margin-top:20px"><img src="../image/ic_back_u.png" alt=""></div>
+				<div class="title" id="title" style="margin-top:26px">解决方案</div>
+			</div>
+		</div>
+	</div>
+
+	<ul id="list" class="innerBox">
+			<li style=""   tapmode="" onclick = "Error1()" id='1'>
+				<div style="display:-webkit-box;-webkit-box-align: center;-webkit-box-pack: center;height:100%;width:60px;"><img height="40" width="40"
+	                  src="../image/xiu.jpg"></div>
+	        <div class="message-info" style="-webkit-box-flex:1;display:-webkit-box;-webkit-box-orient:vertical;line-height: 17px;" >
+	            <div style="-webkit-box-flex:1;">常见故障</div>
+	            <div  class="smallFont flex1"></div>
+
+	            <div  class="smallFont flex1"></div></div>
+	    </li>
+
+	</ul>
+
+
+
+
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script>
+function goback () {
+   api.closeWin({name:'HuaErrorType'});
+ }
+
+function Error1( tag ){
+		api.openWin({
+				name: 'Huaerror',
+				url: './Huaerror.html',
+				pageParam: {
+						brand:'1',
+			 }
+		});
+}
+</script>
+</html>

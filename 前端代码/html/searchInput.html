@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <style>
+        .empty{ text-align: center; padding: 0px 0; }
+        html, body {width: 100%;min-height: 100%;background: #f0f0f0;}
+
+        /* 头部样式 */
+      	.topbar {background: #FF8400; height:50px; border-bottom: 1px solid #DDDFE3;}
+      	.topbar_title {display: inline-block;font-size: 20px; line-height: 50px;padding-left: 12px;}
+      	.hr01, .hr02 {height: 28px;}
+      	.headerico {padding: 11px 15px 11px 15px;}
+      	.headericohover {background: #DADDE0;}
+      	.fr{float: right;}
+      	.fl{float: left;}
+
+      	/*第一头部*/
+      	#logo {padding: 11px 0 0 10px;height: 28px;}
+      	#citylist {height: 50px; line-height: 50px;padding-left: 15px; font-size: 18px; color: #fff;}
+      	.citylistarrow {vertical-align: top; width: 20px; padding-top: 15px;}
+        .search {height: 34px;line-height: 34px; padding-left: 10px; border-radius: 30px;  margin-top: 8px; position: absolute; left: 20px; right: 60px;font-size: 14px;}
+        .search img:first-child {vertical-align: top; width: 20px; padding-top: 7px;padding-right: 10px;}
+        .search img:last-child {vertical-align: top; width: 27px; padding-top: 4px;}
+
+       .search .weui-label{font-size:12px;}
+       .firstSearch {left: 90px;right: 60px;background-color: #FA6604;color: #FDC29B;}
+
+      	/* 第二头部 */
+      	#topbar_refresh {width: 40px;padding:5px 10px;}
+      	.whitebar {background-color: #fcfcfc;}
+      	#whitecity {height: 50px; line-height: 50px;padding-left: 15px; font-size: 18px;color: #FF8400;}
+       .secCitylistarrow {vertical-align: top; width: 15px; padding-top: 18px;padding-left: 5px;}
+       .secSearch {left: 90px;right: 15px;background-color: #fff;color: #999;}
+
+       /* 第三头部 */
+       .swipepic {padding: 5px 15px 2px 15px;height: 23px;}
+       .swipe div {font-size: 4px; text-align: center;color: #999;}
+       .thrSearch {left: 50px;right: 60px;background-color: #fff;color: #999;}
+
+      	/* 头部切换样式 */
+      	.activebar {display: block;}
+
+      	/* 底部切换按钮样式 */
+      	ul {display: -webkit-box; display: -webkit-flex; display: flex; }
+      	#footer {height: 61px; line-height: 60px; background-color: #FAFAFA;border-top: 1px solid #FAFAFA; }
+      	#footer li{-webkit-box-flex: 1; -webkit-flex: 1; flex:1; height: 60px;}
+
+      	/* 选项卡样式 */
+      	.scrollbar {display: -webkit-box;display: -webkit-flex; text-align: center; height: 40px; line-height: 40px;background: #EBECF0;font-size: 12px;position: relative;}
+      	.col1 {-webkit-box-flex:1;-webkit-flex: 1;flex:1;color: #909090;}
+      	.indexbar {position: absolute;/*background: #0fc;*/width: 50%;height: 5px;left: 0px;bottom: 0px;-webkit-transition: 300ms;}
+      	.redbox {background: #DB4646;width: 40px;height: 5px;position: relative;left: auto;right: auto; margin-left: auto; margin-right: auto;}
+
+
+      	/* 本地刷新图标 */
+      	#localrefresh {display:none;float: right; width: 40px; padding: 5px 10px;}
+      	#field1::-webkit-input-placeholder { color:#666; }
+      	#field1 {height: 30px; line-height: 30px; width: 70%;}
+
+      	.swipe {line-height: 50px;margin-right: 10px;color: #FF8400;}
+      	.back {float: left; }
+      	.back img {height: 30px; margin-top: 10px; margin-left: 10px; margin-bottom: 6px; margin-right: 30px;}
+      	.topbar .title {line-height: 50px;font-size: 22px;position: absolute;left: 50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);}
+
+        /* 下拉框 */
+        .brandBox{
+          margin-left: 50px;
+          margin-top: 20px;
+        }
+        .brand{
+          width: 240px;
+          height: 32px;
+          margin-left: 5px;margin-right: 60px;left: 40px;right: 8px;
+          border-radius: 30px;
+          border-right: #000000 1px solid;
+          border-top: #ffffff 1px solid;
+          font-size: 12px; /*www.52css.com*/
+          border-left: #ffffff 1px solid;
+          color:#003366;
+          border-bottom: #000000 1px solid;
+          background-color: #fff;
+        }
+        /* 查询输入框 */
+        .xinghao{
+          margin-top: 12px;
+        }
+        .errorid{
+          margin-top: 55px;
+        }
+        .describeBox{
+          width: 240px;
+          margin-left: 5px;margin-right: 60px;left: 40px;right: 8px;
+          margin-top: 90px;
+          margin-left: 60px;
+        }
+
+        .describeLabel{
+            color:#003366;
+        }
+
+        textarea {
+            width: 220px;
+            height: 3rem;
+            border-radius: 18px;
+            background-color: #fff;
+            padding: 0.5rem;
+        }
+
+        /*查询按钮*/
+        .searchBtn {margin-left: 60px;margin-right: 65px;left: 40px;right: 10px;}
+        .searchBtn {background: #1ab394;height: 40px; text-align: center; line-height: 40px; font-size: 20px;margin-top: 0px;border-radius: 5px;}
+        .searchBtn button {color: #fff;}
+
+
+
+
+
+
+        .hotBox{
+          width: 300px;
+          margin-top: 50px;
+          margin-left: 22px;margin-right: 20px;left: 40px;right: 8px;
+        }
+
+
+
+
+        /* 2X2样式 */
+        .row {display: -webkit-box;display: -webkit-flex;}
+        .col {-webkit-box-flex:1; -webkit-flex:1; flex:1;position: relative;}
+        .col img {position: absolute; right: 0; width: 80px; top: 0;}
+        .col .matrixcell {display: table-cell;vertical-align: middle; padding-left: 10px;}
+        .col .matrixcell .title {margin-bottom: 10px;}
+        .matrix {display: table;height: inherit;}
+
+        /* 1. 2X2 */
+        .flipcard {height: 30px; line-height: 30px; text-align: center; margin: 5px 5px 3px 5px; color: #000; background-color: #fff; font-size: 14px;}
+        .darktitle {height: 40px;line-height: 40px;margin-left: 15px;font-size: 14px;color: #666;}
+
+        /* 2. 三列 */
+        .scratch02 .word {margin-top: 10px;margin-left: 10px;}
+        .scratch02 .word .title{font-size: 18px;}
+        .scratch02 .word .info{font-size: 12px;color: #666;}
+        .scratch02 img {position: relative;width: 60px; height: 50px;}
+        .showposter {text-align: center;margin-top: 5px;padding-bottom: 10px;}
+
+        /* 列表 */
+        .classify {height: 60px;line-height: 60px;background-color: #fff;position: relative;border-bottom: 1px solid #e0e0e0;}
+        .classify .sublogo {width: 30px;margin-top: 15px;margin-left: 15px;float: left;}
+        .classify .arrow {position: absolute;vertical-align: top;right: 15px;top:20px;height: 20px;}
+        .classify .info {line-height: 20px; float: left; height: 60px;margin-left: 10px;}
+        .classify .info .title {font-size: 15px; color: #000; margin-top: 10px;}
+        .classify .info .subtitle {font-size: 12px; color: #666; margin-top: 5px;}
+        .subclass {display: none;}
+        .subclass .flipcard {margin:0;}
+        .brb {border-right: 1px solid #e0e0e0;border-bottom: 1px solid #e0e0e0;}
+        .bb {border-bottom: 1px solid #e0e0e0;}
+
+        .presshover {background-color: #FAFAFA;}
+
+
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+  <div id="wrap">
+    <!-- 第三头部 -->
+    <div id="thridHeader" class="titlebar"  style="height:65px">
+      <div class="topbar whitebar" style="height:65px">
+        <div class="back"  tapmode="" onclick="goback()" style="margin-top:20px"><img src="../image/ic_back_u.png" alt=""></div>
+        <div class="title" id="title" style="margin-top:20px">故障检索</div>
+      </div>
+    </div>
+
+    <!-- 内容 -->
+    <div id="container" class="container">
+      <div class="weui-cell ">
+         <div class="brandBox">
+         <select id="brand"  class="brand">
+           <option value="请选择品牌">请选择品牌</option>
+           <option value="西门子">西门子</option>
+           <option value="发那科">发那科</option>
+           <option value="三菱">三菱</option>
+           <option value="力士乐">力士乐</option>
+           <option value="广州数控">广州数控</option>
+           <option value="华中数控">华中数控</option>
+           <option value="其他品牌">其他品牌</option>
+         </select>
+
+         </div>
+      </div>
+
+      <div class="search thrSearch xinghao">
+          <label class="weui-label">机床型号:</label>
+          <input type="text" class="" id="xinghaoInput" >
+      </div>
+      <div class="search thrSearch errorid">
+          <label class="weui-label">故障代码:</label>
+          <input type="text" class="" id="erroridInput" >
+      </div>
+      <!-- <div class="search thrSearch describe">
+          <label class="weui-label"><label style="color:red;">*</label>描&nbsp;述:&nbsp;&nbsp;</label>
+          <section class="aui-content-padded">
+              <textarea  id="describeInput" placeholder=" 此项必填哦"></textarea>
+          </section>
+             <img src="../image/icon_mic_normal.png"  style="width:32px;heigth:32px;margin-left:200px;margin-top:-34px" alt="" tapmode="" onclick="voiceSearch()">
+      </div> -->
+      <div class="describeBox">
+        <label class="describeLabel">描&nbsp;述:&nbsp;&nbsp;
+          <img src="../image/icon_mic_normal.png"  style="width:20px;heigth:13px;margin-left:5px;margin-top:10px" alt="" tapmode="" onclick="voiceSearch()">
+
+        </label>
+
+        <section class="aui-content-padded">
+            <textarea  id="describeInput" placeholder=" 请输入故障描述"></textarea>
+        </section>
+    </div>
+
+
+      <br/>
+      <div class="searchBtn" tapmode="buyhover" onclick="funOpenArticle(this)"><button type="submit">查  询</button></div>
+
+
+      <div class="hotBox" id="hotBox">
+          <!-- 1 2X2 -->
+        <!--	<div class="darktitle">热门搜索</div>
+
+        	 <div class="row inwrap">
+        		<div class="col flipcard" tapmode="presshover" onclick="openDetail()">搬迁后,首次开机时,机床出现剧烈振动</div>
+        	</div>
+          <div class="row inwrap">
+        		<div class="col flipcard" tapmode="presshover" onclick="openDetail()">Z轴伺服驱动器上的30A (晶闸管主回路)和1.3A(控制回路)熔断器均己经熔断</div>
+        	</div>
+        	<div class="row inwrap">
+        		<div class="col flipcard" tapmode="presshover" onclick="openDetail()">X轴速度控制单元上的TGLS报警灯亮</div>
+        	</div>
+          <div class="row inwrap">
+        		<div class="col flipcard" tapmode="presshover" onclick="openDetail()">Y轴速度控制单元上HCAL报警灯亮</div>
+        	</div> -->
+    </div>
+
+       </div>
+    </div>
+
+  </div>
+
+
+</body>
+</html>
+
+<script>
+apiready = function(){
+
+  var html = '<div class="darktitle">热门搜索</div>';
+
+  var content = {"content1": ["搬迁后,首次开机时,机床出现剧烈振动", "Z轴伺服驱动器上的30A (晶闸管主回路)和1.3A(控制回路)熔断器均己经熔断",
+  "X轴速度控制单元上的TGLS报警灯亮","Y轴速度控制单元上HCAL报警灯亮"]};
+
+  var contentList = content.content1;
+  for (var i=0;i<contentList.length;i++){
+    if(contentList[i].length > 22){
+    	var listShow = contentList[i].substr(0,22) + '...';
+    }else{
+      var listShow = contentList[i].substr(0,22);
+    }
+      var cl = '<div class="row inwrap">'+
+              '<div class="col flipcard" tapmode="presshover" id="describeHot" onclick="funOpenArticleHot(\'' + contentList[i] + '\')">' + listShow + '</div>'+
+          '</div>';
+          html += cl;
+}
+  var hotContent = document.getElementById('hotBox');
+  hotContent.innerHTML = html;
+};
+
+function goback () {
+   api.closeWin({name:'searchInput'});
+ }
+
+function funOpenArticle( tag ){
+  var errorIdObj = document.getElementById("erroridInput"); //定位id
+  var errorid = errorIdObj.value; // 选中值
+  // 故障描述
+  var describeObj = document.getElementById("describeInput"); //定位id
+  var describe = describeObj.value; // 选中值
+  if(describe == '' && errorid == ''){
+    alert('故障代码和故障描述必填其一哦~');
+    return;
+  }
+
+
+
+
+
+  // 品牌名
+  var brandObj = document.getElementById("brand"); //定位id
+  var index = brandObj.selectedIndex; // 选中索引
+  var brand = brandObj.options[index].value; // 选中值  品牌名
+  // 型号
+  var xinghaoObj = document.getElementById("xinghaoInput"); //定位id
+  var xinghao = xinghaoObj.value; // 选中值
+  // 故障代码
+  var erroridObj = document.getElementById("erroridInput"); //定位id
+  var errorid = erroridObj.value; // 选中值
+
+  // alert('brand-' + brand + '\nxinghao-'+xinghao + '\nerrorid-' +errorid + '\ndescribe-'+describe);
+
+    api.openWin({
+        name: 'judge',   //  search_result
+        url: './judge.html',
+        pageParam: {
+            brand: brand,
+            xinghao: xinghao,
+            errorid: errorid,
+            describe:describe,
+       }
+    });
+}
+
+function funOpenArticleHot( listShow ){  //热门搜索
+
+
+  document.getElementById("describeInput").value = listShow ;
+  // var errorIdObj = document.getElementById("erroridInput"); //定位id
+  // var errorid = errorIdObj.value; // 选中值
+  // // 故障描述
+  // // var describeObj = document.getElementById("describeHot"); //定位id  //热门搜索点击项
+  // // var describe = describeObj.value; // 选中值
+  // //
+  //
+  //
+  // // 品牌名
+  // var brandObj = document.getElementById("brand"); //定位id
+  // var index = brandObj.selectedIndex; // 选中索引
+  // var brand = brandObj.options[index].value; // 选中值  品牌名
+  // // 型号
+  // var xinghaoObj = document.getElementById("xinghaoInput"); //定位id
+  // var xinghao = xinghaoObj.value; // 选中值
+  // // 故障代码
+  // var erroridObj = document.getElementById("erroridInput"); //定位id
+  // var errorid = erroridObj.value; // 选中值
+  //
+  //
+  //   api.openWin({
+  //       name: 'judge',   //  search_result
+  //       url: './judge.html',
+  //       pageParam: {
+  //           brand: brand,
+  //           xinghao: xinghao,
+  //           errorid: errorid,
+  //           describe:listShow,
+  //      }
+  //   });
+}
+
+
+
+
+
+function voiceSearch () {
+  var speechObj = api.require('speechRecognizer');
+  api.toast({
+    msg : "语音识别开始，请说话",
+    duration : 1000,
+    location : "middle"
+  });
+
+  speechObj.record({
+  },function(ret,err){
+      if(ret.status){
+        document.getElementById("describeInput").value=ret.wordStr;
+          //ret.wordStr;
+          api.alert({
+            title : "识别结果",
+            msg : ret.wordStr
+          })
+          speechObj.stopRecord();
+      }
+  });
+}
+</script>

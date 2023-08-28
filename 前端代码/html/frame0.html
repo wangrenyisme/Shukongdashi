@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>云API</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <style>
+        .empty{ text-align: center; padding:  0; }
+            .swipe {overflow: hidden;position: relative;}
+            .swipe-wrap {overflow: hidden; position: relative;}
+            .swipe-wrap .swipe-con { float:left; position: relative;}
+            .swipe-wrap .swipe-con img{ width:100%; vertical-align: middle;  }
+
+            /* 猜你喜欢 */
+        		.guesstitle {height: 40px;line-height: 40px;padding-left: 10px;vertical-align: top; font-size: 12px;color: #999;}
+        		.guesstitle img {height: 15px;padding-top: 12px; padding-left: 10px;}
+        		.home-tuan-list .item {position: relative; display: block; padding-left: 10px; border-bottom: 1px solid #e0e0e0;}
+        		.home-tuan-list .cnt {padding: 7px 10px 10px 0; display: box; display: -webkit-box; min-height: 78px;  background-size: auto 1px; }
+        		.home-tuan-list .pic {margin-right: 10px; background: center; }
+        		.home-tuan-list img {width: 90px; height: 66px; margin-top: 7px; margin-bottom: 5px; border-radius: 3px; }
+        		.home-tuan-list .wrap {-webkit-box-flex: 1; }
+        		.home-tuan-list .wrap2 {display: table; height: 88px; width: 100%; }
+        		.home-tuan-list .content {-webkit-box-flex: 1; box-flex: 1; display: table-cell; vertical-align: middle; }
+        		.home-tuan-list .shopname {color: #333; /*line-height: 16px;*/ font-size: 16px; max-width: 18em; white-space: nowrap; word-wrap: normal; text-overflow: ellipsis; overflow: hidden; min-height: 10px; padding-bottom: 2px; padding-top: 3px; display: inline-block;}
+        		.home-tuan-list .title {color: #666; line-height: 16px; font-size: 13px; max-height: 30px; overflow: hidden; padding-top: 3px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+        		.home-tuan-list .hot-title {margin-bottom: 8px; }
+        		.home-tuan-list .hot-subtitle {margin-bottom: 9px; }
+        		.home-tuan-list .info {margin-top: 9px; /*margin-bottom: 11px;*/ color: #666; font-size: 12px; position: relative; line-height: 15px; display: box; display: -webkit-box; height: 15px; }
+        		.home-tuan-list .symbol {font-size: 14px; color: #f60; display: block; margin-top: 1px; }
+        		.home-tuan-list .price {color: #f60; font-size: 20px; line-height: 15px; margin-right: 5px; margin-top: 1px; }
+        		.home-tuan-list .o-price {color: #999; margin-top: 5px; line-height: 10px; }
+        		.home-tuan-list .sale {color: #f63; border: solid 1px #ff916e; padding: 3px 2px 2px; font-size: 10px; border-radius: 2px; -webkit-border-radius: 2px; margin-left: 5px; line-height: 10px; height: 10px; }
+        		.home-tuan-list .distance {-webkit-box-flex: 1; box-flex: 1; -ms-box-flex: 1; -ms-flex: 1; text-align: right; line-height: 10px; margin-top: 5px; color: #999; float: right;font-size: 12px;}
+        		.home-tuan-list .price, .index-rec .home-tuan-list .o-price, .index-rec .home-tuan-list .distance, .index-rec .home-tuan-list .sale {display: block; line-height: 15px; font-size: 12px; }
+        		.Fix:after {display: block; content: ''; height: 0; clear: both; }
+            .support{
+              line-height: :60px;
+              font-size: 16px;
+              color: #a0a0a0;
+            }
+
+    </style>
+</head>
+<body>
+    <div class="empty">
+      <div class="support">由石家庄铁道大学 软件工程系提供支持</div>
+      <div id="wrap" class="flex-wrap flex-vertical" >
+          <div  class='swipe'>
+              <div class='swipe-wrap'>
+                  <div class="swipe-con">
+                      <img src="../image/banner1.png" alt="">
+                  </div>
+                  <div class="swipe-con">
+                      <img src="../image/banner2.png" alt="">
+                  </div>
+                  <div class="swipe-con">
+                      <img src="../image/banner3.png" alt="">
+                  </div>
+
+              </div>
+          </div>
+      </div>
+      <!-- 4. 猜你喜欢 -->
+      <div class="guesstitle">资讯推送<img src="../image/home_competitive_icon.png" alt=""></div>
+      <div class="home-tuan-list">
+        <a href="" class="item hightitem" onclick="openDetail()" tapmode="presshover">
+                <div class="cnt">
+                    <img class="pic" src="../image/news/news1.jpg">
+                    <div class="wrap">
+                        <div class="wrap2">
+                            <div class="content">
+                                <div class="shopname hot-title">西门子与惠普携手推动3D打印...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="" class="item hightitem" onclick="openDetail()"  tapmode="presshover">
+                <div class="cnt">
+                    <img class="pic" src="../image/news/news2.jpg">
+                    <div class="wrap">
+                        <div class="wrap2">
+                            <div class="content">
+                                <div class="shopname hot-title">模塑成型工业4.0</div>
+                                <div class="title hot-subtitle">首届智能模塑科技南沙高峰论坛即将拉开帷幕</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="" class="item hightitem" onclick="openDetail()" tapmode="presshover">
+                <div class="cnt">
+                    <img class="pic" src="../image/news/news3.jpg">
+                    <div class="wrap">
+                        <div class="wrap2">
+                            <div class="content">
+                                <div class="shopname hot-title">开思网和工程客达成战略合作</div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="" class="item Fix hightitem" onclick="openDetail()" tapmode="presshover">
+                <div class="cnt">
+                  <img class="pic" src="../image/news/news4.jpg">
+                  <div class="wrap">
+                    <div class="wrap2">
+                      <div class="content">
+                          <div class="shopname">强劲的软硬结合，驱动你的创新设计</div>
+                          <div class="title">全新性能卓越Dell Precision 5510 评测</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </a>
+            <a href="" class="item Fix hightitem" onclick="openDetail()" tapmode="presshover">
+                <div class="cnt">
+                  <img class="pic" src="../image/news/news5.jpg">
+                  <div class="wrap">
+                    <div class="wrap2">
+                      <div class="content">
+                          <div class="shopname">软件定义未来制造</div>
+                          <div class="title">IDC解读智能制造发展规划（2016-2020年）</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </a>
+        </div>
+
+
+    </div>
+</body>
+</html>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/swipe.js"></script>
+<script type="text/javascript">
+    apiready = function(){
+
+    };
+    var mySwipe = new Swipe($api.dom('.swipe'), {
+        speed: 400,
+        auto: 3000,
+        continuous: true,
+        disableScroll: false,
+        stopPropagation: false,
+        transitionEnd: function(index, elem) {
+
+        }
+    });
+    function funOpenArticle( tag ){
+        api.openWin({
+            name: 'win_webpage',
+            url: './win_webpage.html',
+            pageParam: {
+                name: tag.querySelector('h6').innerHTML
+           }
+        });
+    }
+
+    function openDetail()
+    {
+      api.openWin({
+        name: 'NewsDetail',
+        url: './NewsDetail.html',
+        bounces: false,
+        delay:200
+      });
+    }
+</script>

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>开发</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+      <link rel="stylesheet" type="text/css" href="../css/common.css" />
+
+  		<script type="text/javascript" src="../script/api.js"></script>
+  		<script type="text/javascript" src="../script/echarts.min.js"></script>
+  		<script type="text/javascript" src="../script/jquery-3.0.0.min.js"></script>
+  		<script type="text/javascript" src="../script/contrasqw.js"></script>
+  		<script type="text/javascript" src="../script/d3.v3.min.js"></script>
+
+
+
+  	<style>
+
+  	/* 头部样式 */
+  	.topbar {background: #FF8400; height:50px; border-bottom: 1px solid #DDDFE3;}
+  	.topbar_title {display: inline-block;font-size: 20px; line-height: 50px;padding-left: 12px;}
+  	.hr01, .hr02 {height: 28px;}
+  	.headerico {padding: 11px 15px 11px 15px;}
+  	.headericohover {background: #DADDE0;}
+  	.fr{float: right;}
+  	.fl{float: left;}
+
+  	/*第一头部*/
+  	#logo {padding: 11px 0 0 10px;height: 28px;}
+  	#citylist {height: 50px; line-height: 50px;padding-left: 15px; font-size: 18px; color: #fff;}
+  	.citylistarrow {vertical-align: top; width: 20px; padding-top: 15px;}
+   .search {height: 34px;line-height: 34px; padding-left: 10px; border-radius: 30px;  margin-top: 8px; position: absolute; left: 20px; right: 60px;font-size: 14px;}
+   .search img:first-child {vertical-align: top; width: 20px; padding-top: 7px;padding-right: 10px;}
+   .search img:last-child {vertical-align: top; width: 20px; padding-top: 7px;}
+   .firstSearch {left: 90px;right: 60px;background-color: #FA6604;color: #FDC29B;}
+
+  	/* 第二头部 */
+  	#topbar_refresh {width: 40px;padding:5px 10px;}
+  	.whitebar {background-color: #fcfcfc;}
+  	#whitecity {height: 50px; line-height: 50px;padding-left: 15px; font-size: 18px;color: #FF8400;}
+   .secCitylistarrow {vertical-align: top; width: 15px; padding-top: 18px;padding-left: 5px;}
+   .secSearch {left: 90px;right: 15px;background-color: #E8E8E8;color: #999;}
+
+   /* 第三头部 */
+   .swipepic {padding: 5px 15px 2px 15px;height: 23px;}
+   .swipe div {font-size: 4px; text-align: center;color: #999;}
+   .thrSearch {left: 50px;right: 60px;background-color: #E8E8E8;color: #999;}
+
+  	/* 头部切换样式 */
+  	.activebar {display: block;}
+
+  	/* 底部切换按钮样式 */
+  	ul {display: -webkit-box; display: -webkit-flex; display: flex; }
+  	#footer {height: 61px; line-height: 60px; background-color: #FAFAFA;border-top: 1px solid #FAFAFA; }
+  	#footer li{-webkit-box-flex: 1; -webkit-flex: 1; flex:1; height: 60px;}
+
+  	/* 选项卡样式 */
+  	.scrollbar {display: -webkit-box;display: -webkit-flex; text-align: center; height: 40px; line-height: 40px;background: #EBECF0;font-size: 12px;position: relative;}
+  	.col1 {-webkit-box-flex:1;-webkit-flex: 1;flex:1;color: #909090;}
+  	.indexbar {position: absolute;/*background: #0fc;*/width: 50%;height: 5px;left: 0px;bottom: 0px;-webkit-transition: 300ms;}
+  	.redbox {background: #DB4646;width: 40px;height: 5px;position: relative;left: auto;right: auto; margin-left: auto; margin-right: auto;}
+
+
+  	/* 本地刷新图标 */
+  	#localrefresh {display:none;float: right; width: 40px; padding: 5px 10px;}
+  	#field1::-webkit-input-placeholder { color:#666; }
+  	#field1 {height: 30px; line-height: 30px; width: 70%;}
+
+  	.swipe {line-height: 50px;margin-right: 10px;color: #FF8400;}
+  	.back {float: left; }
+  	.back img {height: 30px; margin-top: 10px; margin-left: 10px; margin-bottom: 6px; margin-right: 30px;}
+  	.topbar .title {line-height: 50px;font-size: 22px;position: absolute;left: 50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);}
+
+
+  		*{
+  			font-size: 16px;
+
+  		}
+
+  		#histogramParent{
+  			width: 430px;
+  			height: 460px;
+
+  		}
+
+  		#histogramParent__zhexian{
+  			width: 430px;
+  			height: 460px;
+  		}
+  	</style>
+</head>
+<body>
+  <div id="wrap">
+    <!-- 第三头部 -->
+    <div id="thridHeader" class="titlebar" style="height:65px">
+      <div class="topbar whitebar" style="height:65px">
+        <div class="back"  tapmode="" onclick="goback()" style="margin-top:20px"><img src="../image/ic_back_u.png" alt=""></div>
+        <div class="title" id="title"  style="margin-top:20px">关系图谱</div>
+      </div>
+    </div>
+    <div id="histogramParent" >
+  	      <input type="text" style="margin-top:-1px;margin-left:50px;border: 1px red;width:15px;height:15px;background-Color:#CC0000;"/>
+  	      <input type="text" style="border:1px ;width:15px;height:15px;background-Color:#CC66FF;margin-left:18px"/>
+  	      <input type="text" style="margin-top:-1px;border:1px ;width:15px;height:15px;background-Color:#99CCFF;margin-left:18px"/>
+  	      <input type="text" style="margin-top:5px;border: 1px ;width:15px;height:15px;background-Color:#97980e;margin-left:34px"/>
+  	      <input type="text" style="margin-top:10px;border: 1px ;width:15px;height:15px;background-Color:#888888;margin-left:34px"/>
+  	      <input type="text" style="margin-top:15px;border: 1px ;width:15px;height:15px;background-Color:#FA8072;margin-left:34px"/>
+  	      <p style="font-size:4px;margin-top:-11px;margin-left:70px">品牌</p>
+  	      <p style="font-size:4px;margin-top:-13px;margin-left:106px">型号</p>
+  	      <p style="font-size:4px;margin-top:-13px;margin-left:144px">故障代码</p>
+  	      <p style="font-size:4px;margin-top:-13px;margin-left:194px">故障类型</p>
+  	      <p style="font-size:4px;margin-top:-13px;margin-left:246px">解决方法</p>
+  	      <p style="font-size:4px;margin-top:-12px;margin-left:299px">故障描述</p>
+  			<div style="width:{width};height:{height};margin:auto;top:30px;margin-top:-25px" id="histogramParent__zhexian">
+
+
+  			</div>
+
+  		</div>
+
+    </div>
+</body>
+
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/echarts.min.js"></script>
+<script type="text/javascript" src="../script/jquery-3.0.0.min.js"></script>
+<script type="text/javascript" src="../script/contrasqw.js"></script>
+<script type="text/javascript" src="../script/d3.v3.min.js"></script>
+
+<script>
+
+
+	apiready = function(){
+		//获取上一页面传来的数据（包括机床品牌、型号、故障代码和故障描述）
+    ret = api.pageParam.ret;
+    //alert('ceshi');
+    //alert(ret);
+    //alert(typeof ret);
+    res = eval('(' + ret + ')');
+    //alert(typeof res);
+    //alert(res.list.length);
+
+
+
+
+    var resultData = '';
+    $(function(){
+        resultData = data;
+        histogram('histogramParent__zhexian', resultData.monthSalsePickPrePart[0],res);
+    });
+
+};
+
+
+function goback () {
+  api.closeWin({name:'graphShow'});
+}
+
+
+
+function histogram(id, obj, jsonResult) {
+  // alert('jsonResult---'+jsonResult);
+    var yearList = [], qtyList = [];//年份，重量集合
+    var color = "#92DCFB";
+    for (var i in obj.detail) {
+        yearList.push(obj.detail[i].title);
+        qtyList.push(obj.detail[i].value);
+    }
+
+    var myChart = echarts.init($api.byId(id));
+    var listdata = new Array();
+    var  listlink=new Array();
+    var locax=new Array(300,800,550,550,250,400,800,700);
+    var locay=new Array(300,300,100,500,800,-150,100,200)
+    // var value1 =  {"list": [{"entity1": "广州数控", "rel": "型号", "entity2": "GSK980TD", "entity1_type": "品牌", "entity2_type": "型号"}, {"entity1": "GSK980TD", "rel": "故障代码", "entity2": "64", "entity1_type": "型号", "entity2_type": "故障代码"}, {"entity1": "64", "rel": "故障描述", "entity2": "G70~G73循环结束段使用了被禁止使用的 G指令 ", "entity1_type": "故障代码", "entity2_type": "故障描述"}, {"entity1": "G70~G73循环结束段使用了被禁止使用的 G指令 ", "rel": "故障类型", "entity2": "CNC报警", "entity1_type": "故障描述", "entity2_type": "故障类型"}, {"entity1": "G70~G73循环结束段使用了被禁止使用的 G指令 ", "rel": "解决方法", "entity2": "按复位键消除报警 , 再修改程序", "entity1_type": "故障描述", "entity2_type": "解决方法"}], "answer": ["按复位键消除报警 , 再修改程序"], "similar": ["97.62%"]}
+
+      var obj1 = jsonResult.list;//json转化可用的
+      var defin="";//用于存储节点
+      var rnd=1,rnd2=2;
+      var strtip="";
+      var col="";
+      for(var i =0;i<obj1.length;i++){
+        pan1=defin.indexOf(obj1[i].entity1) != -1
+        pan2=defin.indexOf(obj1[i].entity2) != -1
+
+        if(pan1==false){//判断该节点名字是否已经存上了
+          defin+=obj1[i].entity1
+          if(obj1[i].entity1.length>9){
+              strtip=obj1[i].entity1;
+              obj1[i].entity1=obj1[i].entity1.substring(0,5)+"...";
+            }
+            if(obj1[i].entity1_type=="品牌")  col="#CC0000";
+            if(obj1[i].entity1_type=="型号")  col="#CC66FF";
+            if(obj1[i].entity1_type=="故障代码")  col="#99CCFF";
+            if(obj1[i].entity1_type=="故障类型")  col="#97980e";
+            if(obj1[i].entity1_type=="解决方法")  col="#888888";
+            if(obj1[i].entity1_type=="故障描述")  col="#FA8072";
+          tem={
+              name: obj1[i].entity1,
+              x: locax[i],
+              y: locay[i],
+              label: {
+                 normal: {
+                     show: true
+                 }
+             },
+              itemStyle: {
+                    normal: {
+                        color:col,
+                    }
+                },
+              tooltip:strtip
+          };
+          listdata.push(tem);
+        }
+        if(pan2==false){//判断该节点名字是否已经存上了
+          defin+=obj1[i].entity2;
+          if(obj1[i].entity2.length>9){
+              strtip=obj1[i].entity2;
+              obj1[i].entity2=obj1[i].entity2.substring(0,5)+"...";
+            }
+            if(obj1[i].entity2_type=="品牌")  col="#CC0000";
+            if(obj1[i].entity2_type=="型号")  col="#CC66FF";
+            if(obj1[i].entity2_type=="故障代码")  col="#99CCFF";
+            if(obj1[i].entity2_type=="故障类型")  col="#97980e";
+            if(obj1[i].entity2_type=="解决方法")  col="#888888";
+            if(obj1[i].entity2_type=="故障描述")  col="#FA8072";
+          tem1={
+              name: obj1[i].entity2,
+              x: locax[7-i],
+              y: locay[7-i],
+              label: {
+                 normal: {
+                     show: true
+                 }
+             },
+              itemStyle: {
+                    normal: {
+                        color: col,
+                    }
+                },
+              tooltip:strtip
+          };
+          listdata.push(tem1);
+        }
+      }
+      for(var i =0;i<obj1.length;i++){
+        if(obj1[i].entity1.length>9)
+            obj1[i].entity1=obj1[i].entity1.substring(0,5)+"...";
+        if(obj1[i].entity2.length>9)
+            obj1[i].entity2=obj1[i].entity2.substring(0,5)+"...";
+        tem4= {//两张写法
+            source: obj1[i].entity1,
+            target: obj1[i].entity2,
+            label: {
+                 normal: {
+                     show: true,
+                     formatter: obj1[i].rel
+                 }
+             },
+            lineStyle: {
+                normal: { curveness: 0.2 }
+            }
+        };
+        listlink.push(tem4);
+      }
+
+    var app = {};
+    option = null;
+
+    option = {
+      backgroundColor: '#eee',
+    title: {
+        text: '关系图谱'
+    },
+    tooltip: {},
+    animationDurationUpdate: 550,
+    animationEasingUpdate: 'quinticInOut',
+    series : [
+        {
+            type: 'graph',
+            layout: 'none',
+            symbolSize: 50,
+            roam: true,
+            label: {
+                normal: {
+                    show: true
+                }
+            },
+            edgeSymbol: ['circle', 'arrow'],
+            edgeSymbolSize: [4, 10],
+            edgeLabel: {
+                normal: {
+                    textStyle: {
+                        fontSize: 10
+                    }
+                }
+            },
+            data: listdata,
+            // links: [],
+            links: listlink,
+            lineStyle: {
+                normal: {
+                    opacity: 0.9,
+                    width: 2,
+                    curveness: 0
+                }
+            }
+        }
+    ]
+
+};
+    if (option && typeof option === "object") {
+        myChart.setOption(option, true);
+    }
+}
+
+</script>
+</html>

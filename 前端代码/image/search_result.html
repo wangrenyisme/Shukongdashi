@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>推理结果</title>
+	<link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/common.css" />
+
+		<script type="text/javascript" src="../script/api.js"></script>
+		<script type="text/javascript" src="../script/echarts.min.js"></script>
+		<script type="text/javascript" src="../script/jquery-3.0.0.min.js"></script>
+		<script type="text/javascript" src="../script/contrasqw.js"></script>
+		<script type="text/javascript" src="../script/d3.v3.min.js"></script>
+
+
+
+	<style>
+
+	/* 头部样式 */
+	.topbar {background: #FF8400; height:50px; border-bottom: 1px solid #DDDFE3;}
+	.topbar_title {display: inline-block;font-size: 20px; line-height: 50px;padding-left: 12px;}
+	.hr01, .hr02 {height: 28px;}
+	.headerico {padding: 11px 15px 11px 15px;}
+	.headericohover {background: #DADDE0;}
+	.fr{float: right;}
+	.fl{float: left;}
+
+	/*第一头部*/
+	#logo {padding: 11px 0 0 10px;height: 28px;}
+	#citylist {height: 50px; line-height: 50px;padding-left: 15px; font-size: 18px; color: #fff;}
+	.citylistarrow {vertical-align: top; width: 20px; padding-top: 15px;}
+ .search {height: 34px;line-height: 34px; padding-left: 10px; border-radius: 30px;  margin-top: 8px; position: absolute; left: 20px; right: 60px;font-size: 14px;}
+ .search img:first-child {vertical-align: top; width: 20px; padding-top: 7px;padding-right: 10px;}
+ .search img:last-child {vertical-align: top; width: 20px; padding-top: 7px;}
+ .firstSearch {left: 90px;right: 60px;background-color: #FA6604;color: #FDC29B;}
+
+	/* 第二头部 */
+	#topbar_refresh {width: 40px;padding:5px 10px;}
+	.whitebar {background-color: #fcfcfc;}
+	#whitecity {height: 50px; line-height: 50px;padding-left: 15px; font-size: 18px;color: #FF8400;}
+ .secCitylistarrow {vertical-align: top; width: 15px; padding-top: 18px;padding-left: 5px;}
+ .secSearch {left: 90px;right: 15px;background-color: #E8E8E8;color: #999;}
+
+ /* 第三头部 */
+ .swipepic {padding: 5px 15px 2px 15px;height: 23px;}
+ .swipe div {font-size: 4px; text-align: center;color: #999;}
+ .thrSearch {left: 50px;right: 60px;background-color: #E8E8E8;color: #999;}
+
+	/* 头部切换样式 */
+	.activebar {display: block;}
+
+	/* 底部切换按钮样式 */
+	ul {display: -webkit-box; display: -webkit-flex; display: flex; }
+	#footer {height: 61px; line-height: 60px; background-color: #FAFAFA;border-top: 1px solid #FAFAFA; }
+	#footer li{-webkit-box-flex: 1; -webkit-flex: 1; flex:1; height: 60px;}
+
+	/* 选项卡样式 */
+	.scrollbar {display: -webkit-box;display: -webkit-flex; text-align: center; height: 40px; line-height: 40px;background: #EBECF0;font-size: 12px;position: relative;}
+	.col1 {-webkit-box-flex:1;-webkit-flex: 1;flex:1;color: #909090;}
+	.indexbar {position: absolute;/*background: #0fc;*/width: 50%;height: 5px;left: 0px;bottom: 0px;-webkit-transition: 300ms;}
+	.redbox {background: #DB4646;width: 40px;height: 5px;position: relative;left: auto;right: auto; margin-left: auto; margin-right: auto;}
+
+
+	/* 本地刷新图标 */
+	#localrefresh {display:none;float: right; width: 40px; padding: 5px 10px;}
+	#field1::-webkit-input-placeholder { color:#666; }
+	#field1 {height: 30px; line-height: 30px; width: 70%;}
+
+	.swipe {line-height: 50px;margin-right: 10px;color: #FF8400;}
+	.back {float: left; }
+	.back img {height: 30px; margin-top: 10px; margin-left: 10px; margin-bottom: 6px; margin-right: 30px;}
+	.topbar .title {line-height: 50px;font-size: 22px;position: absolute;left: 50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);}
+
+
+	/*查询结果list*/
+	html,body{
+		-webkit-touch-callout:none;
+		-webkit-text-size-adjust:none;
+		-webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+		-webkit-user-select:none;
+	}
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .innerBox {
+            display: block;
+            width: 100%;
+        }
+        .innerBox li {
+            width: 100%;
+            height: 60px;
+            background: #FFFFFF;
+            display: -webkit-box;
+            -webkit-box-align: center;
+            font-size: 15px;
+            border-bottom: 1px solid #CDCCD1;
+        }
+        .smallFont{
+            font-size: 13px;
+						max-width: 22em;
+            color: #bebebe;
+        }
+        .flex1{
+            -webkit-box-flex:1;
+        }
+
+			.distance {-webkit-box-flex: 1; box-flex: 1; -ms-box-flex: 1; -ms-flex: 1; text-align: right; line-height: 10px; margin-top: 5px; color: #999; float: right;font-size: 12px;}
+
+
+
+
+
+
+			/* 在线爬 */
+			.h20 {margin-top: 5px;height: 20px;background-color: #F5F5F5;}
+			.hightitem {background-color: #fff;}
+			.inwrap {padding-right: 15px;padding-left: 15px;}
+			.goodcomment {height: 50px;line-height: 50px;font-size: 14px;}
+			.goodcomment img {height: 15px;padding-right: 5px;}
+			.goodcomment .arrow {float: right;height: 20px;padding-top: 15px;}
+			.goodcomment .commentnum {font-size: 15px;color: #666;padding-right: 5px;float: right;}
+
+
+	</style>
+</head>
+<body>
+
+
+<div id="answerBox" >
+	<div> 正在检索知识库，请稍候...</div>
+	 <!-- 一个完整的list项，可for循环添加<li>标签 -->
+	<!-- <ul id="list" class="innerBox">
+	<li style=""   tapmode="" onclick = "openDetail('hghchc')">
+		<div style="display:-webkit-box;-webkit-box-align: center;-webkit-box-pack: center;height:100%;width:60px;"><img height="30" width="30"
+								src="../image/my/tu1.png"></div>
+			<div class="message-info" style="-webkit-box-flex:1;display:-webkit-box;-webkit-box-orient:vertical;line-height: 17px;" >
+					<div style="-webkit-box-flex:1;">故障 <span class="distance">相关性：67.3%</span></div>
+
+					<div  class="smallFont flex1">故障大部分的监控设备测试对比妙控鼠标vd895398hjdsfbj</div>
+		 </div>
+	</li>
+	</ul> -->
+
+</div>
+
+		<!-- 在线爬 -->
+		<div class="h20"></div>
+		<div class="goodcomment inwrap hightitem" tapmode="presshover" onclick="spiderOnline()"><img src="../image/my/my_card_user_icon_normal.png" alt="">没有满意的解决方案？<img src="../image/arrow.png" alt="" class="arrow"><span class="commentnum">在线爬取</span></div>
+<div class="h20"></div>
+
+
+<style>
+	*{
+		font-size: 16px;
+
+	}
+
+	#histogramParent{
+		width: 430px;
+		height: 460px;
+
+	}
+
+	#histogramParent__zhexian{
+		width: 430px;
+		height: 460px;
+	}
+</style>
+</head>
+<body>
+<div id="histogramParent" >
+		<input type="text" style="margin-top:-1px;margin-left:50px;border: 1px red;width:15px;height:15px;background-Color:#CC0000;"/>
+		<input type="text" style="border:1px ;width:15px;height:15px;background-Color:#CC66FF;margin-left:18px"/>
+		<input type="text" style="margin-top:-1px;border:1px ;width:15px;height:15px;background-Color:#99CCFF;margin-left:18px"/>
+		<input type="text" style="margin-top:-1px;border: 1px ;width:15px;height:15px;background-Color:#97980e;margin-left:34px"/>
+		<input type="text" style="margin-top:-1px;border: 1px ;width:15px;height:15px;background-Color:#888888;margin-left:34px"/>
+		<input type="text" style="margin-top:-1px;border: 1px ;width:15px;height:15px;background-Color:#FA8072;margin-left:34px"/>
+		<p style="font-size:4px;margin-top:-11px;margin-left:70px">品牌</p>
+		<p style="font-size:4px;margin-top:-13px;margin-left:106px">型号</p>
+		<p style="font-size:4px;margin-top:-13px;margin-left:144px">故障代码</p>
+		<p style="font-size:4px;margin-top:-13px;margin-left:194px">故障类型</p>
+		<p style="font-size:4px;margin-top:-13px;margin-left:246px">解决方法</p>
+		<p style="font-size:4px;margin-top:-13px;margin-left:299px">故障描述</p>
+	<div style="width:{width};height:{height};margin:auto;top:30px;margin-top:-25px" id="histogramParent__zhexian">
+
+
+	</div>
+
+</div>
+
+
+
+
+
+</body>
+<script>
+
+
+	apiready = function(){
+		//获取上一页面传来的数据（包括机床品牌、型号、故障代码和故障描述）
+
+	// 	var value1 =  {'list': [{'entity1': '广州数控', 'rel': '型号', 'entity2': 'GSK980TD', 'entity1_type': '品牌', 'entity2_type': '型号'},{'entity1': 'GSK980TD', 'rel': '故障代码', 'entity2': '64', 'entity1_type': '型号', 'entity2_type': '故障代码'},{'entity1': '64', 'rel': '故障描述', 'entity2': 'G70~G73循环结束段使用了被禁止使用的 G指令', 'entity1_type': '故障代码', 'entity2_type': '故障描述'},{'entity1': 'G70~G73循环结束段使用了被禁止使用的 G指令', 'rel': '故障类型', 'entity2': 'CNC报警', 'entity1_type': '故障描述', 'entity2_type': '故障类型'},{'entity1': '64', 'rel': '故障描述', 'entity2': 'PLC程序 ( 梯形图 ) 编辑软件版本不符', 'entity1_type': '故障代码', 'entity2_type': '故障描述'},{'entity1': 'G70~G73循环结束段使用了被禁止使用的 G指令', 'rel': '解决方法', 'entity2': '按复位键消除报警 , 再修改程序', 'entity1_type': '故障描述', 'entity2_type': '解决方法'},{'entity1': 'PLC程序 ( 梯形图 ) 编辑软件版本不符', 'rel': '解决方法', 'entity2': '更新 GSKCC软件版本', 'entity1_type': '故障描述', 'entity2_type': '解决方法'}],"answer": ["当使用移动拖板方式执行刀补时， 首先使用百分表。把两轴的反向 间隙补准（如果间隙太大则调整 机械） ,然后再用百分表来测量 ， 按照所输入的刀补值在手动方式 下执行换刀，反复执行刀补和取 消刀补换刀，观察其拖板是否有 移动，若有移动说明系统对修改 刀补是有效的，刀补无效原因是 加工工件修改刀补后不到位，导 致尺寸没到位。则检查工装夹具 或刀具安装等", "当使用修改坐标方式来执行刀补， 也较容易判断，只要是在手动方 式下，输入了刀补然后反复换刀 执行和取消刀补来换刀，观察其 坐标值是否有变化。变化之前与 变化后作相减运算，得出的数值 是否刚好等于刀补值。若是这样 但工件尺寸修改刀补后走不到位， 做出刀补不执行的误判断。检查 其工艺和工装夹具、刀具等"], "similar": ["87.29%", "65.47%"]};
+	 //
+	//  var resultData = '';//全局的数据
+	//  $(function(){
+	// 		 resultData = data;
+	// 		 histogram('histogramParent__zhexian', resultData.monthSalsePickPrePart[0],'dfnskn');
+	//  });
+
+
+
+	 brand = api.pageParam.brand;
+	 xinghao = api.pageParam.xinghao;
+	 errorid = api.pageParam.errorid;
+	 describe = api.pageParam.describe;
+	 if (brand == "其他品牌" || brand == "请选择品牌") {
+		 brand = '';
+	 }
+	 alert('result页------brand-' + brand + '\nxinghao-'+xinghao + '\nerrorid-' +errorid + '\ndescribe-'+describe);
+
+
+	 // 访问服务器端数据
+			api.ajax({
+								url: 'http://120.77.37.120:8000/qa?pinpai=' +brand +  '&xinghao=' + xinghao + '&errorid=' +errorid + '&question=' + describe, // 请求数据库的接口     http://120.77.37.120:8000/pa?question=数控机床主轴温度过高
+								method: 'get',
+								headers:{
+									'Content-Type': 'application/json;charset=utf-8'
+								},
+							}, function(ret, err) {
+							if (ret) { //ret是Object数据类型  想转换为String：res = $api.jsonToStr(ret);（）该方法可获得服务器端的完整返回数据
+								alert('完整返回的--'+JSON.stringify(ret));
+
+
+
+
+									res = eval(ret); //从服务器返回来的json数据    JSON.stringify(ret)
+									alert('res' + res);
+									// alert('res.answer[0]---'+res.answer[0]);
+
+
+									describeList = res.describe;
+									answerList = res.answer;
+									similarList = res.similar;
+
+									alert('answerList.length：'+answerList.length);
+
+									var html = '<ul id="list" class="innerBox">';
+									 for(var i=0;i<answerList.length;i++)
+									 {
+										//  alert('test--'+answerList[i] );
+													var listStrShow = answerList[i].substr(0,40); //由于列表显示空间有限，解决方案内容较长，这里只截取前一部分
+													var cl = '<li style=""   tapmode="" onclick = "openDetail(\'' + answerList[i] + '\',\'' + describeList[i] + '\')">' +
+													'<div style="display:-webkit-box;-webkit-box-align: center;-webkit-box-pack: center;height:100%;width:60px;"><img height="30" width="30"src="../image/my/tu1.png"></div>' +
+													'<div class="message-info" style="-webkit-box-flex:1;display:-webkit-box;-webkit-box-orient:vertical;line-height: 17px;" >' +
+													'<div style="-webkit-box-flex:1;">' + describeList[i] + '<span class="distance">相关度：' + similarList[i] + '</span></div>';
+											html += cl+ '<div  class="smallFont flex1">' + listStrShow + '</div> </div></li>';
+									 }
+									 html += '</ul>     <div onclick="openGraph(\'' + res + '\')">查看图表</div>   ';
+
+									var answerShow = document.getElementById('answerBox');
+									answerShow.innerHTML = html;
+
+									var value1 =  {'list': [{'entity1': '广州数控', 'rel': '型号', 'entity2': 'GSK980TD', 'entity1_type': '品牌', 'entity2_type': '型号'},{'entity1': 'GSK980TD', 'rel': '故障代码', 'entity2': '64', 'entity1_type': '型号', 'entity2_type': '故障代码'},{'entity1': '64', 'rel': '故障描述', 'entity2': 'G70~G73循环结束段使用了被禁止使用的 G指令', 'entity1_type': '故障代码', 'entity2_type': '故障描述'},{'entity1': 'G70~G73循环结束段使用了被禁止使用的 G指令', 'rel': '故障类型', 'entity2': 'CNC报警', 'entity1_type': '故障描述', 'entity2_type': '故障类型'},{'entity1': '64', 'rel': '故障描述', 'entity2': 'PLC程序 ( 梯形图 ) 编辑软件版本不符', 'entity1_type': '故障代码', 'entity2_type': '故障描述'},{'entity1': 'G70~G73循环结束段使用了被禁止使用的 G指令', 'rel': '解决方法', 'entity2': '按复位键消除报警 , 再修改程序', 'entity1_type': '故障描述', 'entity2_type': '解决方法'},{'entity1': 'PLC程序 ( 梯形图 ) 编辑软件版本不符', 'rel': '解决方法', 'entity2': '更新 GSKCC软件版本', 'entity1_type': '故障描述', 'entity2_type': '解决方法'}],"answer": ["当使用移动拖板方式执行刀补时， 首先使用百分表。把两轴的反向 间隙补准（如果间隙太大则调整 机械） ,然后再用百分表来测量 ， 按照所输入的刀补值在手动方式 下执行换刀，反复执行刀补和取 消刀补换刀，观察其拖板是否有 移动，若有移动说明系统对修改 刀补是有效的，刀补无效原因是 加工工件修改刀补后不到位，导 致尺寸没到位。则检查工装夹具 或刀具安装等", "当使用修改坐标方式来执行刀补， 也较容易判断，只要是在手动方 式下，输入了刀补然后反复换刀 执行和取消刀补来换刀，观察其 坐标值是否有变化。变化之前与 变化后作相减运算，得出的数值 是否刚好等于刀补值。若是这样 但工件尺寸修改刀补后走不到位， 做出刀补不执行的误判断。检查 其工艺和工装夹具、刀具等"], "similar": ["87.29%", "65.47%"]};
+
+
+									var resultData = '';//全局的数据
+									$(function(){
+											resultData = data;
+											histogram('histogramParent__zhexian', resultData.monthSalsePickPrePart[0],res);
+									});
+
+
+
+
+							} else {
+								api.alert({msg:JSON.stringify(err)});
+								var answerShow = document.getElementById('answerBox');
+								answerShow.innerHTML = '<div>抱歉，未检索到解决方案</div>';
+								api.toast({
+									msg: '未检索到解决方案',
+									duration: 2000,
+									location: 'bottom'
+								});
+							}
+
+						// 隐藏加载状态对话框
+						api.hideProgress();
+					});
+
+				// 	var value1 =  {'list': [{'entity1': '广州数控', 'rel': '型号', 'entity2': 'GSK980TD', 'entity1_type': '品牌', 'entity2_type': '型号'},{'entity1': 'GSK980TD', 'rel': '故障代码', 'entity2': '64', 'entity1_type': '型号', 'entity2_type': '故障代码'},{'entity1': '64', 'rel': '故障描述', 'entity2': 'G70~G73循环结束段使用了被禁止使用的 G指令', 'entity1_type': '故障代码', 'entity2_type': '故障描述'},{'entity1': 'G70~G73循环结束段使用了被禁止使用的 G指令', 'rel': '故障类型', 'entity2': 'CNC报警', 'entity1_type': '故障描述', 'entity2_type': '故障类型'},{'entity1': '64', 'rel': '故障描述', 'entity2': 'PLC程序 ( 梯形图 ) 编辑软件版本不符', 'entity1_type': '故障代码', 'entity2_type': '故障描述'},{'entity1': 'G70~G73循环结束段使用了被禁止使用的 G指令', 'rel': '解决方法', 'entity2': '按复位键消除报警 , 再修改程序', 'entity1_type': '故障描述', 'entity2_type': '解决方法'},{'entity1': 'PLC程序 ( 梯形图 ) 编辑软件版本不符', 'rel': '解决方法', 'entity2': '更新 GSKCC软件版本', 'entity1_type': '故障描述', 'entity2_type': '解决方法'}],"answer": ["当使用移动拖板方式执行刀补时， 首先使用百分表。把两轴的反向 间隙补准（如果间隙太大则调整 机械） ,然后再用百分表来测量 ， 按照所输入的刀补值在手动方式 下执行换刀，反复执行刀补和取 消刀补换刀，观察其拖板是否有 移动，若有移动说明系统对修改 刀补是有效的，刀补无效原因是 加工工件修改刀补后不到位，导 致尺寸没到位。则检查工装夹具 或刀具安装等", "当使用修改坐标方式来执行刀补， 也较容易判断，只要是在手动方 式下，输入了刀补然后反复换刀 执行和取消刀补来换刀，观察其 坐标值是否有变化。变化之前与 变化后作相减运算，得出的数值 是否刚好等于刀补值。若是这样 但工件尺寸修改刀补后走不到位， 做出刀补不执行的误判断。检查 其工艺和工装夹具、刀具等"], "similar": ["87.29%", "65.47%"]};
+				//  //
+				//  var resultData = '';//全局的数据
+				// //  alert('abcChuanCan--'+abcChuanCan);
+				//  $(function(){
+				// 		 resultData = data;
+				// 		 histogram('histogramParent__zhexian', resultData.monthSalsePickPrePart[0],value1);
+				//  });
+};
+
+
+
+
+
+
+
+
+
+
+function openGraph(resChuanCan){
+	alert('resChuanCan--'+resChuanCan);
+	api.openWin({
+			name: 'graphShow0',
+			url: './graphShow0.html',
+			pageParam: {
+				resChuanCan:resChuanCan,
+		 }
+	});
+}
+
+
+
+
+    function goback () {
+      api.closeWin({name:'search_result'});
+    }
+
+
+		function openDetail(answer1,describe1){
+			alert('describe-'+describe1);
+			alert(answer1);
+			api.openWin({
+          name: 'answer_detail',
+          url: './answer_detail.html',
+          pageParam: {
+						question:describe1,
+						answer: answer1
+         }
+      });
+		}
+
+		function spiderOnline(){
+			// alert("触发在线爬--"+question);
+			api.openWin({
+          name: 'spiderOnline_result',
+          url: './spiderOnline_result.html',
+          pageParam: {
+						brand: brand,
+            xinghao: xinghao,
+            errorid: errorid,
+            describe: describe,
+         }
+      });
+		}
+
+
+
+
+
+
+		function histogram(id, obj, jsonResult) {
+      alert('jsonResult---'+jsonResult);
+        var yearList = [], qtyList = [];//年份，重量集合
+        var color = "#92DCFB";
+        for (var i in obj.detail) {
+            yearList.push(obj.detail[i].title);
+            qtyList.push(obj.detail[i].value);
+        }
+
+        var myChart = echarts.init($api.byId(id));
+        var listdata = new Array();
+        var  listlink=new Array();
+        var locax=new Array(300,800,550,550,250,400,800,700);
+        var locay=new Array(300,300,100,500,800,-150,100,200)
+        // var value1 =  {"list": [{"entity1": "广州数控", "rel": "型号", "entity2": "GSK980TD", "entity1_type": "品牌", "entity2_type": "型号"}, {"entity1": "GSK980TD", "rel": "故障代码", "entity2": "64", "entity1_type": "型号", "entity2_type": "故障代码"}, {"entity1": "64", "rel": "故障描述", "entity2": "G70~G73循环结束段使用了被禁止使用的 G指令 ", "entity1_type": "故障代码", "entity2_type": "故障描述"}, {"entity1": "G70~G73循环结束段使用了被禁止使用的 G指令 ", "rel": "故障类型", "entity2": "CNC报警", "entity1_type": "故障描述", "entity2_type": "故障类型"}, {"entity1": "G70~G73循环结束段使用了被禁止使用的 G指令 ", "rel": "解决方法", "entity2": "按复位键消除报警 , 再修改程序", "entity1_type": "故障描述", "entity2_type": "解决方法"}], "answer": ["按复位键消除报警 , 再修改程序"], "similar": ["97.62%"]}
+
+          var obj1 = jsonResult.list;//json转化可用的
+					// alert('obj1-'+obj1);
+          var defin="";//用于存储节点
+          var rnd=1,rnd2=2;
+          var strtip="";
+          var col="";
+          for(var i =0;i<obj1.length;i++){
+            pan1=defin.indexOf(obj1[i].entity1) != -1
+            pan2=defin.indexOf(obj1[i].entity2) != -1
+
+            if(pan1==false){//判断该节点名字是否已经存上了
+              defin+=obj1[i].entity1
+              if(obj1[i].entity1.length>9){
+                  strtip=obj1[i].entity1;
+                  obj1[i].entity1=obj1[i].entity1.substring(0,5)+"...";
+                }
+                if(obj1[i].entity1_type=="品牌")  col="#CC0000";
+                if(obj1[i].entity1_type=="型号")  col="#CC66FF";
+                if(obj1[i].entity1_type=="故障代码")  col="#99CCFF";
+                if(obj1[i].entity1_type=="故障类型")  col="#97980e";
+                if(obj1[i].entity1_type=="解决方法")  col="#888888";
+                if(obj1[i].entity1_type=="故障描述")  col="#FA8072";
+              tem={
+                  name: obj1[i].entity1,
+                  x: locax[i],
+                  y: locay[i],
+                  label: {
+                     normal: {
+                         show: true
+                     }
+                 },
+                  itemStyle: {
+                        normal: {
+                            color:col,
+                        }
+                    },
+                  tooltip:strtip
+              };
+              listdata.push(tem);
+            }
+            if(pan2==false){//判断该节点名字是否已经存上了
+              defin+=obj1[i].entity2;
+              if(obj1[i].entity2.length>9){
+                  strtip=obj1[i].entity2;
+                  obj1[i].entity2=obj1[i].entity2.substring(0,5)+"...";
+                }
+                if(obj1[i].entity2_type=="品牌")  col="#CC0000";
+                if(obj1[i].entity2_type=="型号")  col="#CC66FF";
+                if(obj1[i].entity2_type=="故障代码")  col="#99CCFF";
+                if(obj1[i].entity2_type=="故障类型")  col="#97980e";
+                if(obj1[i].entity2_type=="解决方法")  col="#888888";
+                if(obj1[i].entity2_type=="故障描述")  col="#FA8072";
+              tem1={
+                  name: obj1[i].entity2,
+                  x: locax[7-i],
+                  y: locay[7-i],
+                  label: {
+                     normal: {
+                         show: true
+                     }
+                 },
+                  itemStyle: {
+                        normal: {
+                            color: col,
+                        }
+                    },
+                  tooltip:strtip
+              };
+              listdata.push(tem1);
+            }
+          }
+          for(var i =0;i<obj1.length;i++){
+            if(obj1[i].entity1.length>9)
+                obj1[i].entity1=obj1[i].entity1.substring(0,5)+"...";
+            if(obj1[i].entity2.length>9)
+                obj1[i].entity2=obj1[i].entity2.substring(0,5)+"...";
+            tem4= {//两张写法
+                source: obj1[i].entity1,
+                target: obj1[i].entity2,
+                label: {
+                     normal: {
+                         show: true,
+                         formatter: obj1[i].rel
+                     }
+                 },
+                lineStyle: {
+                    normal: { curveness: 0.2 }
+                }
+            };
+            listlink.push(tem4);
+          }
+
+        var app = {};
+        option = null;
+
+        option = {
+          backgroundColor: '#eee',
+        title: {
+            text: '关系图谱'
+        },
+        tooltip: {},
+        animationDurationUpdate: 550,
+        animationEasingUpdate: 'quinticInOut',
+        series : [
+            {
+                type: 'graph',
+                layout: 'none',
+                symbolSize: 50,
+                roam: true,
+                label: {
+                    normal: {
+                        show: true
+                    }
+                },
+                edgeSymbol: ['circle', 'arrow'],
+                edgeSymbolSize: [4, 10],
+                edgeLabel: {
+                    normal: {
+                        textStyle: {
+                            fontSize: 10
+                        }
+                    }
+                },
+                data: listdata,
+                // links: [],
+                links: listlink,
+                lineStyle: {
+                    normal: {
+                        opacity: 0.9,
+                        width: 2,
+                        curveness: 0
+                    }
+                }
+            }
+        ]
+
+    };
+        if (option && typeof option === "object") {
+            myChart.setOption(option, true);
+        }
+    }
+
+</script>
+</html>

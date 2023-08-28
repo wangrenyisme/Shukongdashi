@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>推理结果</title>
+	<link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../css/api.css" />
+		    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+		    <script type="text/javascript" src="../script/aui-toast.js"></script>
+	<style>
+	/* 头部样式 */
+	.topbar {background: #FF8400; height:50px; border-bottom: 1px solid #DDDFE3;}
+	.topbar_title {display: inline-block;font-size: 20px; line-height: 50px;padding-left: 12px;}
+	.hr01, .hr02 {height: 28px;}
+	.headerico {padding: 11px 15px 11px 15px;}
+	.headericohover {background: #DADDE0;}
+	.fr{float: right;}
+	.fl{float: left;}
+
+	/*第一头部*/
+	#logo {padding: 11px 0 0 10px;height: 28px;}
+	#citylist {height: 50px; line-height: 50px;padding-left: 15px; font-size: 18px; color: #fff;}
+	.citylistarrow {vertical-align: top; width: 20px; padding-top: 15px;}
+ .search {height: 34px;line-height: 34px; padding-left: 10px; border-radius: 30px;  margin-top: 8px; position: absolute; left: 20px; right: 60px;font-size: 14px;}
+ .search img:first-child {vertical-align: top; width: 20px; padding-top: 7px;padding-right: 10px;}
+ .search img:last-child {vertical-align: top; width: 20px; padding-top: 7px;}
+ .firstSearch {left: 90px;right: 60px;background-color: #FA6604;color: #FDC29B;}
+
+	/* 第二头部 */
+	#topbar_refresh {width: 40px;padding:5px 10px;}
+	.whitebar {background-color: #fcfcfc;}
+	#whitecity {height: 50px; line-height: 50px;padding-left: 15px; font-size: 18px;color: #FF8400;}
+ .secCitylistarrow {vertical-align: top; width: 15px; padding-top: 18px;padding-left: 5px;}
+ .secSearch {left: 90px;right: 15px;background-color: #E8E8E8;color: #999;}
+
+ /* 第三头部 */
+ .swipepic {padding: 5px 15px 2px 15px;height: 23px;}
+ .swipe div {font-size: 4px; text-align: center;color: #999;}
+ .thrSearch {left: 50px;right: 60px;background-color: #E8E8E8;color: #999;}
+
+	/* 头部切换样式 */
+	.activebar {display: block;}
+
+	/* 底部切换按钮样式 */
+	ul {display: -webkit-box; display: -webkit-flex; display: flex; }
+	#footer {height: 61px; line-height: 60px; background-color: #FAFAFA;border-top: 1px solid #FAFAFA; }
+	#footer li{-webkit-box-flex: 1; -webkit-flex: 1; flex:1; height: 60px;}
+
+	/* 选项卡样式 */
+	.scrollbar {display: -webkit-box;display: -webkit-flex; text-align: center; height: 40px; line-height: 40px;background: #EBECF0;font-size: 12px;position: relative;}
+	.col1 {-webkit-box-flex:1;-webkit-flex: 1;flex:1;color: #909090;}
+	.indexbar {position: absolute;/*background: #0fc;*/width: 50%;height: 5px;left: 0px;bottom: 0px;-webkit-transition: 300ms;}
+	.redbox {background: #DB4646;width: 40px;height: 5px;position: relative;left: auto;right: auto; margin-left: auto; margin-right: auto;}
+
+
+	/* 本地刷新图标 */
+	#localrefresh {display:none;float: right; width: 40px; padding: 5px 10px;}
+	#field1::-webkit-input-placeholder { color:#666; }
+	#field1 {height: 30px; line-height: 30px; width: 70%;}
+
+	.swipe {line-height: 50px;margin-right: 10px;color: #FF8400;}
+	.back {float: left; }
+	.back img {height: 30px; margin-top: 10px; margin-left: 10px; margin-bottom: 6px; margin-right: 30px;}
+	.topbar .title {line-height: 50px;font-size: 22px;position: absolute;left: 50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);}
+
+
+	/*查询结果list*/
+	html,body{
+		-webkit-touch-callout:none;
+		-webkit-text-size-adjust:none;
+		-webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+		-webkit-user-select:none;
+	}
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .innerBox {
+            display: block;
+            width: 100%;
+        }
+        .innerBox li {
+            width: 100%;
+            height: 60px;
+            background: #FFFFFF;
+            display: -webkit-box;
+            -webkit-box-align: center;
+            font-size: 15px;
+            border-bottom: 1px solid #CDCCD1;
+        }
+        .smallFont{
+            font-size: 13px;
+            color: #bebebe;
+        }
+        .flex1{
+            -webkit-box-flex:1;
+        }
+
+			.distance {-webkit-box-flex: 1; box-flex: 1; -ms-box-flex: 1; -ms-flex: 1; text-align: right; line-height: 10px; margin-top: 5px; color: #999; float: right;font-size: 12px;}
+
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<!-- 第三头部 -->
+		<div id="thridHeader" class="titlebar" style="height:65px">
+			<div class="topbar whitebar" style="height:65px">
+				<div class="back"  tapmode="" onclick="goback()"  style="margin-top:20px"><img src="../image/ic_back_u.png" alt=""></div>
+				<div class="title" id="title"  style="margin-top:20px" >解决方案</div>
+			</div>
+		</div>
+	</div>
+	  <div class="empty"></div>
+
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script>
+function goback () {
+   api.closeWin({name:'HuaAns'});
+ }
+
+apiready = function(){
+	var array=new Array;
+	var array1=new Array(
+		'故障描述：屏幕没有显示;解决方案：1．检查电源插座（ XS1）2．检查输入电源是否正常，应该为 AC24V 或DC24V接线极性是否正确',
+'故障描述：屏幕没有显示但工程面板能正常控制;解决方案：调整主板 COMS 分辨率参数为640X480',
+'故障描述：DOS 系统不能启动;解决方案：1．软盘运行系统2．用杀毒软件检查软件系统3．重新安装系统软件',
+'故障描述：不能进入数控主菜单;解决方案：更换CF卡、电子盘',
+'故障描述：进入数控主菜单后黑屏;解决方案：1．检查电源插座2．检查电源电压3．确认电源的负载能力应该不低于 100W',
+'故障描述：运行或操作中出现死机或重新启动;解决方案：重新启动后在急停状态下检查参数 , 检查坐标轴参数、PMC 用户参数作为分母的参数不应该为 0',
+'故障描述：开机后系统报坐标轴机床位置丢失;解决方案：任意移动一个坐标轴',
+'故障描述：系统始终保持急停状态不能产生复位信号;解决方案：1. 检查超程限位开关的常闭触点2. 检查急停按钮的常闭触点, 若未装手持单元或手持单元上无急停按钮 ,XS8 接口中的 4 和17 脚应短接',
+'故障描述：系统始终保持复位状态;解决方案：1． 检查输入端口2． 检查电路3． 检查电源模块4． 检查驱动模块5． 检查主轴模块',
+'故障描述：系统可以手动运行但无法切换到自动或单段状态;解决方案：1． 检查输入端口2． 检查电路3． 检查电源模块4． 检查驱动模块5． 检查主轴模块6． 检查刀具夹紧 / 松开信号7． 检查伺服动力电源空气开关',
+'故障描述：系统跟踪误差过大或定位误差过大;解决方案：1． 检查电路2． 检查电源模块3． 检查驱动模块4． 检查伺服动力电源空气开关',
+'故障描述：回零 ( 回参考点 ) 时报硬件故障;解决方案：1. 检查电机编码器反馈电缆2. 需更换电机编码器反馈电缆',
+'故障描述：回零 ( 回参考点 ) 时坐标轴无反应;解决方案：1. 检查坐标轴参数中的回参考点方式 , 通常对伺服电机应设为 2(+-+)2. 检查坐标轴数中的回参考点快移和定位速度',
+'故障描述：回零 ( 回参考点 ) 时坐标轴反向低速移动直到压到超程限位开关;解决方案：1. 检查坐标轴回零 ( 回参考点) 开关2. 需更换坐标轴回零 ( 回参考点) 开关',
+'故障描述：回零 ( 回参考点 ) 精度差;解决方案：1．坐标轴控制电缆应采用双绞屏蔽电缆2．坐标轴控制电缆屏蔽可靠接地4． 标轴控制电缆尽量不要缠绕5． 坐标轴控制电缆与其他强电电缆尽量远离且不要平行布置',
+'故障描述：两次回参考点机床位置相差一个整螺距;解决方案：调整坐标轴回零 ( 回参考点)开关位置',
+'故障描述：打开急停开关后升降轴自动下滑;解决方案：检查PMC 用户参数 P[68]',
+'故障描述：伺服电机抱闸无法打开或不稳定;解决方案：1．检查抱闸机构电源是否正常，应该为 DC24V. 必须采用稳定的开关电源供电形式 ,严禁采用简易桥式电路供电2. 接线极性是否正确',
+'故障描述：系统无手摇工作方式;解决方案：检查XS8 接口',
+'故障描述：系统有手摇工作方式但手摇无反应;解决方案：1．检查 XS8 接口2．检查手持单元电缆',
+'故障描述：接通伺服驱动器动力电源立即出现报警;解决方案：1．检查伺服电机编码器反馈电缆2．需更换电机编码器反馈电缆',
+'故障描述：伺服电机静止时抖动;解决方案：检查伺服电机编码器反馈电缆',
+'故障描述：伺服电机缓慢转动零漂;解决方案：1．检查伺服驱动器控制方式2．检查伺服驱动器脉冲形式3．检查伺服驱动器电机极对数4．检查伺服驱动器电机编码器反馈线数',
+'故障描述：电机不运转;解决方案：1．检查电路2．检查电源模块3．检查驱动模块4．检查伺服动力电源空气开关',
+'故障描述：电机只能运行一小段距离;解决方案：1．检查伺服电机编码器反馈电缆2．需更换电机编码器反馈电缆',
+'故障描述：电机运转时跳动;解决方案：按要求对整个系统可靠接地每个单元或器件均应可靠接地驱动器与数控装置的信号地应可靠共地',
+'故障描述：电机爬行;解决方案：按要求对整个系统可靠接地每个单元或器件均应可靠接地驱动器与数控装置的信号地应可靠共地',
+'故障描述：电机轴输出扭矩很小;解决方案：1．按要求对整个系统可靠接地每个单元或器件均应可靠接地驱动器与数控装置的信号地应可靠共地2．伺服驱动器电机编码器反馈电缆、坐标轴控制电缆应该采用屏蔽电缆且屏蔽层可靠接地3．电机强电电缆可靠接地',
+'故障描述：主轴超速或不可控;解决方案：检查主轴驱动器的参数设置',
+'故障描述：主轴不转;解决方案：1．检查电路2．检查电源模块3．检查驱动模块检查动力电源空气开关',
+'故障描述：主轴不能定向停;解决方案：1．检查输出端口2.检查电路3．检查驱动模块',
+'故障描述：主轴定向停的位置不准确;解决方案：1. 需更换电机编码器反馈电缆, 应采用双绞屏蔽电缆2. 加粗位置反馈电缆中的电源线线径 , 如采用多根线并用3. 电缆屏蔽层可靠接地4. 电缆两端加磁环',
+'故障描述：刀架正转不停;解决方案：检查模块的电源是否正常，通常的刀架刀位信号模块应该为DC24V, 接线极性是否正确',
+'故障描述：刀架能选刀，但刀架偏了一个角度;解决方案：检查模块的电源是否正常，通常的刀架刀位信号模块应该为DC24V',
+'故障描述：车螺纹不能执行;解决方案：检查 主轴旋转方向',
+'故障描述：加工螺纹 ( 功丝 ) 时，有乱丝现象;解决方案：检查联接的部分是否有松动',
+'故障描述：功丝不能执行;解决方案：1. 检查两个联动轴的伺服驱动器位置环增益和速度环增益2. 一般可先将两个联动轴的伺服驱动器位置环增益和速度环增益分别调整为相同,再根据具体情况细调各轴增益',
+'故障描述：采用小线段加工时有停顿现象;解决方案：在加工程序的第一个 G01程序段中增加 G64指令'
+	)
+
+	var error = api.pageParam.error;
+	var type = api.pageParam.type;
+	var bb=[].concat(array1);
+	for(var i=0;i<bb.length;i++)
+		 if(i==error){
+		    arr=bb[i].split(";");
+				//alert(arr[0])  错误描述
+				$api.dom('.empty').innerHTML = "<b>故障描述：</b>"+arr[0].substring(5)+"</br></br></br>"+"<b>解决方案：</b>"+arr[1].substring(5);
+			}
+
+	};
+</script>
+</html>

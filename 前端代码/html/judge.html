@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+</head>
+<body>
+  <p>故障推理分析中，请稍候...</p>
+</body>
+</html>
+
+<script>
+	apiready = function(){
+		//获取上一页面传来的数据（包括机床品牌、型号、故障代码和故障描述）
+	 brand = api.pageParam.brand;
+	 xinghao = api.pageParam.xinghao;
+	 errorid = api.pageParam.errorid;
+	 describe = api.pageParam.describe;
+	 if (brand == "其他品牌" || brand == "请选择品牌") {
+		 brand = '';
+	 }
+	 alert('judge页面\nbrand-' + brand + '\nxinghao-'+xinghao + '\nerrorid-' +errorid + '\ndescribe-'+describe);
+
+
+  // var value1 =  {"list": [{"entity1": "广州数控", "rel": "故障描述", "entity2": "主轴温度过高", "entity1_type": "品牌", "entity2_type": "故障描述"}, {"entity1": "主轴温度过高", "rel": "解决方法", "entity2": "只锁死主轴吗 当进行程序测试的时候主轴是不懂得", "entity1_type": "故障描述", "entity2_type": "解决方法"}, {"entity1": "主轴温度过高", "rel": "解决方法", "entity2": "数控机床加工过程中，主轴过热的原因有以下几点：1.主轴缺油，需要增添润滑剂;2.负荷调节过紧;3.主轴转速过高;4.主轴电机或主轴控制模块有故障;5.主轴电路有局部短路。     维修方法：主轴发热是要先找到发热源，判断是哪一端轴承发热引起的，然后用手转动主轴，判断主轴转动时松紧是否均匀，有没有沉点。如果是轴承引起的主轴发热，就要更换或清洗主轴轴承、轴承加适量润滑脂。在清洗轴承的时候一般采用煤油或者汽油清洗，先粗洗后精洗，然后均匀涂抹耐高温润滑脂后再重新装配。如果轴承预紧力过大引起的发热，先分别检查测量前后轴承与轴承间隙调整垫之间的间隙，要求在无锁紧螺母的外力下，轴承与轴承间隙调整垫之间的间隙在0.08mm-0.10mm之间，然后重新锁紧螺母，消除轴承间隙即可。", "entity1_type": "故障描述", "entity2_type": "解决方法"}, {"entity1": "主轴温度过高", "rel": "解决方法", "entity2": "主轴给上使能，没有运动的命令，主轴电机就是锁死的（直连电机主轴，中间没有传动机构的），再就是机械上加液压刹车装置，主要是铣的时候固定主轴用的", "entity1_type": "故障描述", "entity2_type": "解决方法"}], "describe": ["主轴温度过高", "主轴温度过高", "主轴温度过高"], "answer": ["只锁死主轴吗 当进行程序测试的时候主轴是不懂得", "数控机床加工过程中，主轴过热的原因有以下几点：1.主轴缺油，需要增添润滑剂;2.负荷调节过紧;3.主轴转速过高;4.主轴电机或主轴控制模块有故障;5.主轴电路有局部短路。     维修方法：主轴发热是要先找到发热源，判断是哪一端轴承发热引起的，然后用手转动主轴，判断主轴转动时松紧是否均匀，有没有沉点。如果是轴承引起的主轴发热，就要更换或清洗主轴轴承、轴承加适量润滑脂。在清洗轴承的时候一般采用煤油或者汽油清洗，先粗洗后精洗，然后均匀涂抹耐高温润滑脂后再重新装配。如果轴承预紧力过大引起的发热，先分别检查测量前后轴承与轴承间隙调整垫之间的间隙，要求在无锁紧螺母的外力下，轴承与轴承间隙调整垫之间的间隙在0.08mm-0.10mm之间，然后重新锁紧螺母，消除轴承间隙即可。", "主轴给上使能，没有运动的命令，主轴电机就是锁死的（直连电机主轴，中间没有传动机构的），再就是机械上加液压刹车装置，主要是铣的时候固定主轴用的"], "similar": ["100.0%", "100.0%", "100.0%"]};
+  //
+  //   abc = JSON.stringify(value1);
+  // if(value1.hasOwnProperty("selectedlist")){
+  //  alert('有selectedlist');
+  //
+  //  //res = eval(ret); //从服务器返回来的json数据    JSON.stringify(ret)
+  //  api.openWin({
+  //      name: 'reason_result',
+  //      url: './reason_result.html',
+  //      pageParam: {
+  //        ret: abc
+  //     }
+  //  });
+  //
+  // }else{
+  //   alert('没有selectedlist');
+  //   api.openWin({
+  //       name: 'search_result',
+  //       url: './search_result.html',
+  //       pageParam: {
+  //        ret: abc
+  //      }
+  //   });
+  // }
+
+
+	 // 访问服务器端数据
+			api.ajax({
+								url: 'http://120.77.37.120:8000/qa?pinpai=' +brand +  '&xinghao=' + xinghao + '&errorid=' +errorid + '&question=' + describe, // 请求数据库的接口     http://120.77.37.120:8000/pa?question=数控机床主轴温度过高
+								method: 'get',
+								headers:{
+									'Content-Type': 'application/json;charset=utf-8'
+								},
+							}, function(ret, err) {
+							if (ret) { //ret是Object数据类型  想转换为String：res = $api.jsonToStr(ret);（）该方法可获得服务器端的完整返回数据
+								 alert('完整返回的--'+JSON.stringify(ret));
+          
+
+                 abc = JSON.stringify(ret);
+
+								if(ret.hasOwnProperty("selectedlist")){
+									// alert('有selectedlist');
+
+									//res = eval(ret); //从服务器返回来的json数据    JSON.stringify(ret)
+                  api.openWin({
+                      name: 'reason_result',
+                      url: './reason_result.html',
+                      pageParam: {
+                        brand: brand,
+                        xinghao: xinghao,
+                        errorid: errorid,
+                        describe:describe,
+            						ret: abc
+                     }
+                  });
+
+                }else{
+                   alert('没有selectedlist');
+                   api.openWin({
+                       name: 'search_result',
+                       url: './search_result.html',
+                       pageParam: {
+                         brand: brand,
+                         xinghao: xinghao,
+                         errorid: errorid,
+                         describe:describe,
+             						 ret: abc
+                      }
+                   });
+                 }
+
+
+              } else {
+                // api.alert({msg:JSON.stringify(err)});
+                var answerShow = document.getElementById('answerBox');
+                answerShow.innerHTML = '<div>抱歉，未检索到解决方案</div>';
+                api.toast({
+                  msg: '未检索到解决方案',
+                  duration: 2000,
+                  location: 'bottom'
+                });
+              }
+
+            // 隐藏加载状态对话框
+            api.hideProgress();
+          });
+
+};
+
+</script>

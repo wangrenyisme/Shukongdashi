@@ -1,0 +1,363 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>Hello APP</title>
+		<link rel="stylesheet" type="text/css" href="../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../css/common.css" />
+
+		    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+		    <script type="text/javascript" src="../script/aui-toast.js"></script>
+
+	<style>
+	/* 头部样式 */
+	.topbar {background: #FF8400; height:50px; border-bottom: 1px solid #DDDFE3;}
+	.topbar_title {display: inline-block;font-size: 20px; line-height: 50px;padding-left: 12px;}
+	.hr01, .hr02 {height: 28px;}
+	.headerico {padding: 11px 15px 11px 15px;}
+	.headericohover {background: #DADDE0;}
+	.fr{float: right;}
+	.fl{float: left;}
+
+	/*第一头部*/
+	#logo {padding: 11px 0 0 10px;height: 28px;}
+	#citylist {height: 50px; line-height: 50px;padding-left: 15px; font-size: 18px; color: #fff;}
+	.citylistarrow {vertical-align: top; width: 20px; padding-top: 15px;}
+	.search {height: 34px;line-height: 34px; padding-left: 10px; border-radius: 30px;  margin-top: 8px; position: absolute; left: 20px; right: 60px;font-size: 14px;}
+	.search img:first-child {vertical-align: top; width: 20px; padding-top: 7px;padding-right: 10px;}
+	.search img:last-child {vertical-align: top; width: 20px; padding-top: 7px;}
+	.firstSearch {left: 90px;right: 60px;background-color: #FA6604;color: #FDC29B;}
+
+	/* 第二头部 */
+	#topbar_refresh {width: 40px;padding:5px 10px;}
+	.whitebar {background-color: #fcfcfc;}
+	#whitecity {height: 50px; line-height: 50px;padding-left: 15px; font-size: 18px;color: #FF8400;}
+	.secCitylistarrow {vertical-align: top; width: 15px; padding-top: 18px;padding-left: 5px;}
+	.secSearch {left: 90px;right: 15px;background-color: #E8E8E8;color: #999;}
+
+	/* 第三头部 */
+	.swipepic {padding: 5px 15px 2px 15px;height: 23px;}
+	.swipe div {font-size: 4px; text-align: center;color: #999;}
+	.thrSearch {left: 50px;right: 60px;background-color: #E8E8E8;color: #999;}
+
+	/* 头部切换样式 */
+	.activebar {display: block;}
+
+	/* 底部切换按钮样式 */
+	ul {display: -webkit-box; display: -webkit-flex; display: flex; }
+	#footer {height: 61px; line-height: 60px; background-color: #FAFAFA;border-top: 1px solid #FAFAFA; }
+	#footer li{-webkit-box-flex: 1; -webkit-flex: 1; flex:1; height: 60px;}
+
+	/* 选项卡样式 */
+	.scrollbar {display: -webkit-box;display: -webkit-flex; text-align: center; height: 40px; line-height: 40px;background: #EBECF0;font-size: 12px;position: relative;}
+	.col1 {-webkit-box-flex:1;-webkit-flex: 1;flex:1;color: #909090;}
+	.indexbar {position: absolute;/*background: #0fc;*/width: 50%;height: 5px;left: 0px;bottom: 0px;-webkit-transition: 300ms;}
+	.redbox {background: #DB4646;width: 40px;height: 5px;position: relative;left: auto;right: auto; margin-left: auto; margin-right: auto;}
+
+
+	/* 本地刷新图标 */
+	#localrefresh {display:none;float: right; width: 40px; padding: 5px 10px;}
+	#field1::-webkit-input-placeholder { color:#666; }
+	#field1 {height: 30px; line-height: 30px; width: 70%;}
+
+	.swipe {line-height: 50px;margin-right: 10px;color: #FF8400;}
+	.back {float: left; }
+	.back img {height: 30px; margin-top: 10px; margin-left: 10px; margin-bottom: 6px; margin-right: 30px;}
+	.topbar .title {line-height: 50px;font-size: 22px;position: absolute;left: 50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);}
+
+
+
+
+
+	/*查询结果list*/
+html,body{
+	-webkit-touch-callout:none;
+	-webkit-text-size-adjust:none;
+	-webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+	-webkit-user-select:none;
+}
+			*{
+					margin: 0;
+					padding: 0;
+			}
+			.innerBox {
+					display: block;
+					width: 100%;
+			}
+			.innerBox li {
+					width: 100%;
+					height: auto;
+					background: #FFFFFF;
+					display: -webkit-box;
+					-webkit-box-align: center;
+					font-size: 15px;
+					border-bottom: 1px solid #CDCCD1;
+			}
+			.smallFont{
+					font-size: 13px;
+					max-width: 22em;
+					color: #bebebe;
+			}
+			.flex1{
+					-webkit-box-flex:1;
+					margin-top: 5px;
+					margin-left: -20px;
+			}
+
+		.distance {-webkit-box-flex: 1; box-flex: 1; -ms-box-flex: 1; -ms-flex: 1; text-align: right; line-height: 10px; margin-top: 5px; color: #999; float: right;font-size: 12px;}
+
+
+		/* 3. */
+		.brief .title {height: 40px;line-height: 40px;font-size: 15px;color: #000;}
+		.brief .title img {height: 26px;}
+		.brief .title span {margin-left: 6px;}
+		.brief .describe {color: #666;font-size: 14px;line-height: 20px;margin-top: 0px;}
+		.brief .ico {height: 50px;line-height: 50px;font-size: 14px;color: rgb(62,134,227);margin-top: 10px;}
+		.brief .ico img {height: 14px;}
+
+
+
+
+		/* 在线爬 */
+		.h20 {margin-top: 5px;height: 20px;background-color: #F5F5F5;}
+		.hightitem {background-color: #fff;}
+		.inwrap {padding-right: 15px;padding-left: 15px;}
+		.goodcomment {height: 50px;line-height: 50px;font-size: 14px;}
+		.goodcomment img {height: 15px;padding-right: 5px;}
+		.goodcomment .arrow {float: right;height: 20px;padding-top: 15px;}
+		.goodcomment .commentnum {font-size: 15px;color: #666;padding-right: 5px;float: right;}
+
+
+		/* 进度条 */
+		.progress {
+				overflow: hidden;
+				height: 20px;
+				margin-bottom: 2px;
+				background-color: #f5f5f5;
+				border-radius: 4px;
+				-webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+				box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+			}
+
+		.progress-bar {
+				float: left;
+				width: 0%;
+				height: 100%;
+				font-size: 12px;
+				color: #ffffff;
+				text-align: center;
+				background-color: #007aff;
+				-webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+				box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+				-webkit-transition: width 0.6s ease;
+				transition: width 0.6s ease;
+			}
+			.progress-striped .progress-bar {
+				background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(0.25, rgba(255, 255, 255, 0.15)), color-stop(0.25, transparent), color-stop(0.5, transparent), color-stop(0.5, rgba(255, 255, 255, 0.15)), color-stop(0.75, rgba(255, 255, 255, 0.15)), color-stop(0.75, transparent), to(transparent));
+				background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+				background-image: -moz-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+				background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+				background-size: 40px 40px;
+			}
+			.progress.active .progress-bar {
+				-webkit-animation: progress-bar-stripes 2s linear infinite;
+				-moz-animation: progress-bar-stripes 2s linear infinite;
+				-ms-animation: progress-bar-stripes 2s linear infinite;
+				-o-animation: progress-bar-stripes 2s linear infinite;
+				animation: progress-bar-stripes 2s linear infinite;
+			}
+
+			.progress-bar-blue {
+				background-color: rgb(62,134,227);
+			}
+			.progress-striped .progress-bar-blue {
+				background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(0.25, rgba(255, 255, 255, 0.15)), color-stop(0.25, transparent), color-stop(0.5, transparent), color-stop(0.5, rgba(255, 255, 255, 0.15)), color-stop(0.75, rgba(255, 255, 255, 0.15)), color-stop(0.75, transparent), to(transparent));
+				background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+				background-image: -moz-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+				background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+			}
+	</style>
+	</head>
+
+	<body style="background-color:#fff">
+<header class="aui-bar aui-bar-nav">
+
+            <div class="aui-pull-left aui-btn">
+                <span class="aui-iconfont aui-icon-left"></span>
+            </div>
+            <div class="aui-title">故障诊断页</div>
+        </header>
+			<div style="border:1px solid #F00" class="seleready" >
+
+			</div>
+		<div style="border:1px solid #DEB887" class="empty">
+		 <p >相关描述现象如下:</p>
+
+		</div>
+		  <button type="submit" style="width:300px;margin-left:30px"  onclick ="check()">查  询</button>
+
+<div class="h20"></div>
+			<div style="" class="reasonBox" id="reasonBox">
+			 <p >可能的原因:</p>
+
+	<!-- <ul id="list" class="innerBox">
+	 <li style=""   tapmode="" onclick = "openDetail('hghchc')">
+		 <div style="display:-webkit-box;-webkit-box-align: center;-webkit-box-pack: center;width:30px;margin-top:-50px;"><img style="height:20px; width:20px; border:0px;"
+								 src="../image/my/tu1.png"></div>
+			 <div class="message-info" style="-webkit-box-flex:1;display:-webkit-box;-webkit-box-orient:vertical;line-height: 17px;" >
+					 <div style="-webkit-box-flex:1;margin-top:10px;">故障</div>
+
+					 <div  class="smallFont flex1">故障大部分的监控设备测试对比妙控鼠标反倒是哪家快递极速狂飙v反封建狂热v内容均各金融股j</div>
+					 <div class="progress" style="width:150px;margin-left:20px;">
+							<div class="progress-bar progress-bar-blue" role="progressbar"  aria-valuemin="0"  style="width:15%"><span style="color:#fff; margin-left:2px;">75%</span></div>
+							<div class="progress-bar progress-bar-grey"  role="progressbar"  aria-valuemin="0"  style="background-color: #d3d7d4 ;width:85%"></div>
+					 </div>
+
+			</div>
+	 </li>
+</ul> -->
+			</div>
+
+			<!-- 在线爬 -->
+			<div class="h20"></div>
+			<div class="goodcomment inwrap hightitem" tapmode="presshover" onclick="spiderOnline()"><img src="../image/my/my_card_user_icon_normal.png" alt="">没有满意的解决方案？<img src="../image/arrow.png" alt="" class="arrow"><span class="commentnum">在线分析</span></div>
+	<div class="h20"></div>
+
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+apiready = function(){
+	//获取上一页面传来的数据（包括机床品牌、型号、故障代码和故障描述）
+	brand = api.pageParam.brand;
+	xinghao = api.pageParam.xinghao;
+	errorid = api.pageParam.errorid;
+	describe = api.pageParam.describe;
+
+
+	ret = api.pageParam.ret;
+	abc = ret;
+	// alert(abc);
+	// alert(ret);
+	res = $api.strToJson(ret);   //string转json格式进行解析   eval('(' + ret + ')');
+
+	// alert(eval(res).list[1].yuanyin);
+
+
+	// alert(res.list.list.length);
+
+// var value1={"selectedlist": ["ALM401", "搬迁后,首次开机时,机床出现剧烈振动"], "hiddenlist": ["ALM430", "Y轴速度控制单元上HCAL报警灯亮"], "list": [{"yuanyin": "开机出现剧烈振动的故障", "answer": ["考虑到机床搬迁前工作正常,可以认为机床的剧烈振动，是引起X、Y、Z等进给轴驱动器的速度控制准各信号(VRDY信号)为'OFF'状态,且Z轴的跟随误差超过的根本原因。分析机床搬迁前后的最大变化是输入电源发生了改变,因此,电源相序接反的可能性较大。检查电源进线,确认了相序连接错误;更改后,机床恢复正常。"], "possibility": 0.67, "list": [{"entity1": "ALM401", "rel": "含义", "entity2": "X、Y、Z等进给轴驱动器的速度控制准备信号(VRDY信号)为OFF状态,即:速度控制单元没有准备好", "entity1_type": "故障代码", "entity2_type": "含义"}, {"entity1": "X、Y、Z等进给轴驱动器的速度控制准备信号(VRDY信号)为OFF状态,即:速度控制单元没有准备好", "rel": "间接原因", "entity2": "开机出现剧烈振动的故障", "entity1_type": "含义", "entity2_type": "最终原因"}, {"entity1": "搬迁后,首次开机时,机床出现剧烈振动", "rel": "间接原因", "entity2": "开机出现剧烈振动的故障", "entity1_type": "现象", "entity2_type": "最终原因"}, {"entity1": "开机出现剧烈振动的故障", "rel": "解决办法", "entity2": "考虑到机床搬迁前工作正常,可以认为机床的剧烈振动，是引起X、Y、Z等进给轴驱动器的速度控制准各信号(VRDY信号)为'OFF'状态,且Z轴的跟随误差超过的根本原因。分析机床搬迁前后的最大变化是输入电源发生了改变,因此,电源相序接反的可能性较大。检查电源进线,确认了相序连接错误;更改后,机床恢复正常。", "entity1_type": "最终原因", "entity2_type": "解决办法"}]}, {"yuanyin": "速度控制单元HCAL报警的故障", "answer": ["FANUC6M系統CRT上显示401报警的含义是‘X、Y、z等进给轴伺服驱动系统的速度控制单元的准备信号(VRDY信号)为OFF状态，即伺服驱动系统没有准备好’;速度控制单元状态指示灯HCAL亮的含义是‘速度控制单元存在过电流报警’。\r\n由于本机床使用的是PWM直流速度控制单元，根据报警分析,直流速度控制单元存在过电流报警是引起数控系统401报警的根本原因,因为当速度控制单础现过电流时,必然使得速度控制单元的“准备好”信号(VRDY信号)断开。\r\n速度控制单元出现过电流可能的因有:\r\n1)主回路逆变晶体管TM ~ TM4模块不良。\r\n2)伺服电动机电枢线短路、绕组短路或对地短路。\r\n3)驱动器内部逆变晶体管输出短路或对地短路。\r\n根据以上原因,通过测量电动机绕组,表明电动机正常;因此故障最大可能的因是驱动器上的晶体管模块损坏。通过实际测量发现,驱动器回路的逆变晶体管模块TM1、TMZ损坏。在测量确认主回路无短路的前提下，通过更换同规格模块后,故障排除,机床恢复正常工作。"], "possibility": 0.5, "list": [{"entity1": "ALM401", "rel": "含义", "entity2": "X、Y、Z等进给轴驱动器的速度控制准备信号(VRDY信号)为OFF状态,即:速度控制单元没有准备好", "entity1_type": "故障代码", "entity2_type": "含义"}, {"entity1": "X、Y、Z等进给轴驱动器的速度控制准备信号(VRDY信号)为OFF状态,即:速度控制单元没有准备好", "rel": "间接原因", "entity2": "速度控制单元HCAL报警的故障", "entity1_type": "含义", "entity2_type": "最终原因"}, {"entity1": "速度控制单元HCAL报警的故障", "rel": "解决办法", "entity2": "FANUC6M系統CRT上显示401报警的含义是‘X、Y、z等进给轴伺服驱动系统的速度控制单元的准备信号(VRDY信号)为OFF状态，即伺服驱动系统没有准备好’;速度控制单元状态指示灯HCAL亮的含义是‘速度控制单元存在过电流报警’。\r\n由于本机床使用的是PWM直流速度控制单元，根据报警分析,直流速度控制单元存在过电流报警是引起数控系统401报警的根本原因,因为当速度控制单础现过电流时,必然使得速度控制单元的“准备好”信号(VRDY信号)断开。\r\n速度控制单元出现过电流可能的因有:\r\n1)主回路逆变晶体管TM ~ TM4模块不良。\r\n2)伺服电动机电枢线短路、绕组短路或对地短路。\r\n3)驱动器内部逆变晶体管输出短路或对地短路。\r\n根据以上原因,通过测量电动机绕组,表明电动机正常;因此故障最大可能的因是驱动器上的晶体管模块损坏。通过实际测量发现,驱动器回路的逆变晶体管模块TM1、TMZ损坏。在测量确认主回路无短路的前提下，通过更换同规格模块后,故障排除,机床恢复正常工作。", "entity1_type": "最终原因", "entity2_type": "解决办法"}]}]}
+var obj1 = eval(res).hiddenlist;//json转化可用的
+var obj0 = eval(res).selectedlist;//json转化可用的
+
+for(var i=0;i<obj0.length;i++)
+		{$api.dom('.seleready').innerHTML += "<p>已描述现象:<input type=\"checkbox\" checked name=\"category\" value=\""+obj0[i]+"\"/>"+obj0[i]+"</p>";}
+
+for(var i=0;i<obj1.length;i++)
+		{$api.dom('.empty').innerHTML += "<p><input type=\"checkbox\" name=\"category\" value=\""+obj1[i]+"\"/>"+obj1[i]+"</p>";}
+
+
+		var list = eval(res).list;
+		// alert(list.length);
+	// alert('test原因--'+list[0].yuanyin );
+
+
+		var html = '<ul id="list" class="innerBox">';
+		// $api.dom('.reasonBox').innerHTML += '<ul id="list" class="innerBox">';
+		for(var i=0;i<list.length;i++)
+		{
+			var listObj = '\''+JSON.stringify(list[i]).replace(/'/g,'"')+'\'';
+			//  alert('list--'+ listObj );
+			//  alert(typeof listObj);
+			//  alert('test回答--'+list[i].answer );
+			// 	alert(list[i].yuanyin.length );
+						var listReasonShow = list[i].yuanyin.substr(0,20);
+						// var listAnsShow = list[i].answer.substr(0,40); //由于列表显示空间有限，解决方案内容较长，这里只截取前一部分
+						// alert('listReasonShow--'+list[i].yuanyin.substr(0,20) );
+						// alert('listAnsShow--'+list[i].answer.substr(0,30) );
+						alert(listObj);
+						var cl = '<li style=""   tapmode="" onclick = "openDetail(' + listObj + ')">' +
+	 		 '<div style="display:-webkit-box;-webkit-box-align: center;-webkit-box-pack: center;width:30px;margin-top:-50px;"><img style="height:20px; width:20px; border:0px;" src="../image/my/tu1.png"></div>'+
+	 			 '<div class="message-info" style="-webkit-box-flex:1;display:-webkit-box;-webkit-box-orient:vertical;line-height: 17px;" >'+
+	 					 '<div style="-webkit-box-flex:1;margin-top:10px;">' + listReasonShow + '</div>'+
+	 					 '<div  class="smallFont flex1">' + list[i].answer + '</div>'+
+	 					'<div class="progress" style="width:150px;margin-left:20px;">'+
+	 							'<div class="progress-bar progress-bar-blue" role="progressbar"  aria-valuemin="0"  style="width:' +(list[i].possibility*100)  + '%"><span style="color:#fff; margin-left:2px;">' + (list[i].possibility*100) + '%</span></div>'+
+	 							'<div class="progress-bar progress-bar-grey"  role="progressbar"  aria-valuemin="0"  style="background-color: #d3d7d4 ;"></div>'+
+	 					 '</div>'+
+	 			'</div>  </li>';
+				alert(cl);
+			html += cl;
+			// $api.dom('.reasonBox').innerHTML += html;
+		}
+		html += '</ul>   ';
+	// $api.dom('.reasonBox').innerHTML += '</ul>';
+		var reasonShow = document.getElementById('reasonBox');
+		reasonShow.innerHTML += html;
+
+
+
+
+};
+
+function check(){
+	alert('测试按钮');
+	var selects = $api.domAll('input[name="category"]');
+	checkval=[];
+     for(var i=0;i<selects.length;i++){
+			 if(selects[i].checked){
+            // alert(selects[i].value);
+						checkval.push(selects[i].value);
+					}
+        }
+				for(var i=0;i<checkval.length;i++){
+			// alert(checkval[i]);
+			}
+
+	// alert(Lond_ckeck('category'));
+}
+
+// function Lond_ckeck(objname){
+// 	obj = document.getElementByName(objname);
+// 	checkval=[];
+// 	for(k in obj){
+// 		if(obj[k].checked) checkval.push(obj[k].value);
+// 	}
+// 	return checkval;
+// }
+
+
+
+function openDetail(listObj1){
+	alert('djk')
+	alert(listObj1);
+	// api.openWin({
+	// 		name: 'answerReason_detail',
+	// 		url: './answerReason_detail.html',
+	// 		pageParam: {
+	// 			listObj:listObj1
+	// 	 }
+	// });
+}
+
+
+
+
+function spiderOnline(){
+	// alert("触发在线爬--"+question);
+	api.openWin({
+			name: 'spiderOnline_result',
+			url: './spiderOnline_result.html',
+			pageParam: {
+				brand: brand,
+				xinghao: xinghao,
+				errorid: errorid,
+				describe: describe,
+		 }
+	});
+}
+
+</script>
+
+</body>
+	</html>

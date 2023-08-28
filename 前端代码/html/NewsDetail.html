@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>资讯</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <style>
+        .content{ margin-left: 8px; margin-top:5px;align:center; }
+        p{
+          text-indent:2em;
+          font-size:14px;
+          line-height:20px;
+        }
+
+        /* 头部样式 */
+      	.topbar {background: #FF8400; height:50px; border-bottom: 1px solid #DDDFE3;}
+      	.topbar_title {display: inline-block;font-size: 20px; line-height: 50px;padding-left: 12px;}
+      	.hr01, .hr02 {height: 28px;}
+      	.headerico {padding: 11px 15px 11px 15px;}
+      	.headericohover {background: #DADDE0;}
+      	.fr{float: right;}
+      	.fl{float: left;}
+
+      	/*第一头部*/
+      	#logo {padding: 11px 0 0 10px;height: 28px;}
+      	#citylist {height: 50px; line-height: 50px;padding-left: 15px; font-size: 18px; color: #fff;}
+      	.citylistarrow {vertical-align: top; width: 20px; padding-top: 15px;}
+       .search {height: 34px;line-height: 34px; padding-left: 10px; border-radius: 30px;  margin-top: 8px; position: absolute; left: 20px; right: 60px;font-size: 14px;}
+       .search img:first-child {vertical-align: top; width: 20px; padding-top: 7px;padding-right: 10px;}
+       .search img:last-child {vertical-align: top; width: 20px; padding-top: 7px;}
+       .firstSearch {left: 90px;right: 60px;background-color: #FA6604;color: #FDC29B;}
+
+      	/* 第二头部 */
+      	#topbar_refresh {width: 40px;padding:5px 10px;}
+      	.whitebar {background-color: #fcfcfc;}
+      	#whitecity {height: 50px; line-height: 50px;padding-left: 15px; font-size: 18px;color: #FF8400;}
+       .secCitylistarrow {vertical-align: top; width: 15px; padding-top: 18px;padding-left: 5px;}
+       .secSearch {left: 90px;right: 15px;background-color: #E8E8E8;color: #999;}
+
+       /* 第三头部 */
+       .swipepic {padding: 5px 15px 2px 15px;height: 23px;}
+       .swipe div {font-size: 4px; text-align: center;color: #999;}
+       .thrSearch {left: 50px;right: 60px;background-color: #E8E8E8;color: #999;}
+
+      	/* 头部切换样式 */
+      	.activebar {display: block;}
+
+      	/* 底部切换按钮样式 */
+      	ul {display: -webkit-box; display: -webkit-flex; display: flex; }
+      	#footer {height: 61px; line-height: 60px; background-color: #FAFAFA;border-top: 1px solid #FAFAFA; }
+      	#footer li{-webkit-box-flex: 1; -webkit-flex: 1; flex:1; height: 60px;}
+
+      	/* 选项卡样式 */
+      	.scrollbar {display: -webkit-box;display: -webkit-flex; text-align: center; height: 40px; line-height: 40px;background: #EBECF0;font-size: 12px;position: relative;}
+      	.col1 {-webkit-box-flex:1;-webkit-flex: 1;flex:1;color: #909090;}
+      	.indexbar {position: absolute;/*background: #0fc;*/width: 50%;height: 5px;left: 0px;bottom: 0px;-webkit-transition: 300ms;}
+      	.redbox {background: #DB4646;width: 40px;height: 5px;position: relative;left: auto;right: auto; margin-left: auto; margin-right: auto;}
+
+
+      	/* 本地刷新图标 */
+      	#localrefresh {display:none;float: right; width: 40px; padding: 5px 10px;}
+      	#field1::-webkit-input-placeholder { color:#666; }
+      	#field1 {height: 30px; line-height: 30px; width: 70%;}
+
+      	.swipe {line-height: 50px;margin-right: 10px;color: #FF8400;}
+      	.back {float: left; }
+      	.back img {height: 30px; margin-top: 10px; margin-left: 10px; margin-bottom: 6px; margin-right: 30px;}
+      	.topbar .title {line-height: 50px;font-size: 18px;position: absolute;left: 50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);}
+
+    </style>
+</head>
+<body>
+  <div id="wrap">
+		<!-- 第三头部 -->
+		<div id="thridHeader" class="titlebar" style="margin-top:30px;">
+			<div class="topbar whitebar">
+				<div class="back"  tapmode="" onclick="goback()"><img src="../image/ic_back_u.png" alt=""></div>
+				<div class="title" id="title">资讯详情</div>
+			</div>
+		</div>
+
+  <div class="content" >
+    <h3 align="center" >西门子与惠普携手推动3D打印在产品开发和工业生产中的应用</h3>
+
+        <p style="color:#B5B5B5">惠普的Multi Jet Fusion 3D打印技术与Siemens PLM Software的旗舰软件NX集成，用于产品开发和制造</p>
+        <p style="color:#B5B5B5">专为惠普Multi Jet Fusion开发的西门子NX增材制造软件模块已经正式通过惠普认证以用于生产级工业3D打印</p>
+        <p style="color:#B5B5B5">双方深化合作伙伴关系，为下一代惠普Multi Jet Fusion 3D打印机制定技术路线图</p>
+        <br/>
+
+      <p>在长期合作关系的基础上，Siemens PLM Software开发的增材制造（AM）模块已获得惠普公司的认证，该模块将会加速3D打印在生产过程中的应用。用于HP Multi Jet Fusion的Siemens NX AM这一全新的软件模块将把Siemens PLM Software的“端到端”、从设计到生产的解决方案扩充至增材制造领域。NX™ 软件模块使客户能够在单一软件环境中为其惠普3D打印项目开发和管理零部件，避免昂贵耗时的数据转换过程，以及第三方工具，从而提高从设计到成品的整体工作效率。西门子和惠普也在调整未来技术路线图，使设计人员和工程师能够重新构思设计产品，充分利用惠普的3D打印能力，避免传统制造的限制，以更快的速度和更好的成本效益生产新产品，从而为工业3D打印在创新设计领域的应用提供显著的机会。
+      </p><br/>
+      <img class="pic" src="../image/news/news1.jpg" style="width:80%;"><br/>
+
+<p>西门子的新软件模块使NX客户能够用极少的步骤将惠普Multi Jet Fusion 3D打印零件的设计、优化、仿真和打印任务的准备，以及检验过程集成到一个受控环境中。用户现在可以将多个3D零件模型加载到NX中，自动组合嵌套并将其提交给惠普3D打印机，所有这些工作将全部集成在一个统一环境中，以极少的步骤就可完成。在未来，通过NX和Multi Jet Fusion集成，软件应用或工序之间不再需要数据转换，从材料特性到独立体素层面实现前所未有的控制水平。这将实现对不同的材质、密度、强度和摩擦系数以及热、电和传导特性零件的3D打印。
+</P>
+<p>惠普公司3D打印商业拓展及开发全球负责人Michelle Bockman表示：“惠普和西门子将最优秀的设计和制造工作流程软件进行集成，以实现最佳的3D打印，为制造在速度、质量和经济性上满足当今数字化工业时代要求的新产品创造可能。我们期待与西门子加强合作，通过Multi Jet Fusion 3D打印解决方案的体素级设计能力，不断满足客户日益提高的需求。”
+</p>
+<p>西门子和HP有一个共同目标，那就是增材制造产业化。备受赞誉的惠普Multi Jet Fusion 3D打印解决方案是可以直接用于生产的商用系统，在打印高精度1零件时，能够以当前3D打印系统10倍2的速度和一半3的成本完成打印。通过将Siemens PLM Software的涵盖产品生命周期管理（PLM）和电子设计自动化（EDA）软件、集成自动化与制造作业管理的完整解决方案与惠普的3D打印解决方案结合，增材制造能够成为一个真正的工业生产过程。两家公司将继续协作，同时联合其它行业领导者，共同打造一个重要的合作伙伴生态系统，最终实现使增材制造成为一种工业化生产方法的愿景。
+</p>
+<p>Siemens PLM Software制造工程软件业务高级副总裁Zvi Feuer指出：“西门子视增材制造为变革性的数字力量，它促使公司重新设计其工厂和产品以提升业绩水平。由于现代企业愈发期望加快产品上市速度、差异化产品性能、简化生产及供应链作业并实施新的业务模式，对于西门子来说，加深与惠普之间的伙伴关系并推动惠普的创新型3D打印技术变得尤为关键。随着产品不断复杂化和个性化，我们期待由多种材料构成、可调机械性能和集成电子的下一代3D打印零件的诞生。”
+</p>
+<p>1、基于喷砂试验后的尺寸精度不低于±0.2毫米/0.008英寸。更详细地了解材料规格参见 https://hp.com/go/3Dmaterials 。基于下列机械属性：抗拉强度为50，系数Z为1900，系数XY为1900。用PA-12材料进行ASTM标准测试。
+</p>
+<p>2、内部测试及仿真结果显示，HP Jet Fusion 3D打印解决方案的平均打印速度比2016年4月市面上出售的价格区间为10万美元至30万美元的FDM和SLS打印机快10倍。测试变量：零件数量 -堆积密度为在上述竞品仪器的相同数量零件的20%的HP Jet Fusion 3D打印零件1满桶；零件重量：30克；层厚：0.1毫米/0.004英寸。通过2017年推出的具有快速冷却功能的惠普Jet Fusion 3D加工站进行快速冷却。与价格区间在10万美元到30万美元的SLS打印机解决方案的推荐制造时间（2016年4月测试结果）相比，具有快速冷却功能的惠普Jet Fusion 3D加工站缩短了零件冷却时间。FDM不适用。
+</p>
+<p>3、内部测试及公开数据显示，惠普Jet Fusion 3D打印解决方案的平均单位零件打印成本仅为2016年4月市面上出售的价格区间在10万美元到30万美元的具备可比性的FDM和SLS打印解决方案的一半。成本分析依据：制造商推荐的标准解决方案配置价格、物资价格以及维护成本。成本标准：用制造商推荐的粉末可重用性比例，以10%的堆积密度打印重30克的零件，一周打印5天，每天打印1到2桶。
+</p>
+<p>关于西门子在中国：</p>
+<p>西门子股份公司是全球领先的技术企业，创立于1847年，业务遍及全球200多个国家，专注于电气化、自动化和数字化领域。作为世界最大的高效能源和资源节约型技术供应商之一，西门子在高效发电和输电解决方案、基础设施解决方案、工业自动化、驱动和软件解决方案，以及医疗成像设备和实验室诊断等领域占据领先地位。西门子自1872年进入中国，140余年来以创新的技术、卓越的解决方案和产品坚持不懈地对中国的发展提供全面支持，并以出众的品质和令人信赖的可靠性、领先的技术成就、不懈的创新追求，在业界独树一帜。2016财年（2015年10月1日至2016年9月30日），西门子在中国的总营收达到64.4亿欧元，拥有约31000名员工。西门子已经发展成为中国社会和经济不可分割的一部分，并竭诚与中国携手合作，共同致力于实现可持续发展。
+</p>
+    </div>
+
+	</div>
+
+
+</body>
+</html>
+<script>
+function goback () {
+  api.closeWin({name:'NewsDetail'});
+}
+</script>

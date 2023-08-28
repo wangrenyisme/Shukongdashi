@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="./css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/aui.css"/>
+</head>
+<body>
+<div class="aui-content">
+<!--右上角角标-->
+    <!-- <div class="aui-label aui-label-default aui-range" style="position: absolute;z-index: 3;top: 1rem;right: 1rem;">广告</div> -->
+    <!--我们要显示的引导图-->
+    <img id="ad" src="./image/startDesign.png"/>
+</div>
+</body>
+<script type="text/javascript" src="./script/api.js"></script>
+<script type="text/javascript">
+    apiready = function () {
+        //关闭启动页
+        api.removeLaunchView();
+        //广告图片宽度设置与屏幕同宽
+        $api.attr($api.dom('#ad'),'width', api.winWidth);
+        //广告图片高度设置与屏幕同高
+        $api.attr($api.dom('#ad'),'height', api.winHeight);
+        //这里做了一个2秒后跳转到首页
+        setTimeout(function () {
+            api.openWin({
+                name: 'index',
+                url: './index.html',
+            });
+        }, 2000);
+    };
+</script>
+</html>

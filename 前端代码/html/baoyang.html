@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <style>
+    .content{ margin-left: 8px; margin-top:5px;align:center; }
+    p{
+      text-indent:2em;
+      font-size:14px;
+      line-height:20px;
+    }
+
+    /* 头部样式 */
+  	.topbar {background: #FF8400; height:50px; border-bottom: 1px solid #DDDFE3;}
+  	.topbar_title {display: inline-block;font-size: 20px; line-height: 50px;padding-left: 12px;}
+  	.hr01, .hr02 {height: 28px;}
+  	.headerico {padding: 11px 15px 11px 15px;}
+  	.headericohover {background: #DADDE0;}
+  	.fr{float: right;}
+  	.fl{float: left;}
+
+  	/*第一头部*/
+  	#logo {padding: 11px 0 0 10px;height: 28px;}
+  	#citylist {height: 50px; line-height: 50px;padding-left: 15px; font-size: 18px; color: #fff;}
+  	.citylistarrow {vertical-align: top; width: 20px; padding-top: 15px;}
+   .search {height: 34px;line-height: 34px; padding-left: 10px; border-radius: 30px;  margin-top: 8px; position: absolute; left: 20px; right: 60px;font-size: 14px;}
+   .search img:first-child {vertical-align: top; width: 20px; padding-top: 7px;padding-right: 10px;}
+   .search img:last-child {vertical-align: top; width: 20px; padding-top: 7px;}
+   .firstSearch {left: 90px;right: 60px;background-color: #FA6604;color: #FDC29B;}
+
+  	/* 第二头部 */
+  	#topbar_refresh {width: 40px;padding:5px 10px;}
+  	.whitebar {background-color: #fcfcfc;}
+  	#whitecity {height: 50px; line-height: 50px;padding-left: 15px; font-size: 18px;color: #FF8400;}
+   .secCitylistarrow {vertical-align: top; width: 15px; padding-top: 18px;padding-left: 5px;}
+   .secSearch {left: 90px;right: 15px;background-color: #E8E8E8;color: #999;}
+
+   /* 第三头部 */
+   .swipepic {padding: 5px 15px 2px 15px;height: 23px;}
+   .swipe div {font-size: 4px; text-align: center;color: #999;}
+   .thrSearch {left: 50px;right: 60px;background-color: #E8E8E8;color: #999;}
+
+  	/* 头部切换样式 */
+  	.activebar {display: block;}
+
+    /* 底部切换按钮样式 */
+  	ul {display: -webkit-box; display: -webkit-flex; display: flex; }
+  	#footer {height: 61px; line-height: 60px; background-color: #FAFAFA;border-top: 1px solid #FAFAFA; }
+  	#footer li{-webkit-box-flex: 1; -webkit-flex: 1; flex:1; height: 60px;}
+
+  	/* 选项卡样式 */
+  	.scrollbar {display: -webkit-box;display: -webkit-flex; text-align: center; height: 40px; line-height: 40px;background: #EBECF0;font-size: 12px;position: relative;}
+  	.col1 {-webkit-box-flex:1;-webkit-flex: 1;flex:1;color: #909090;}
+  	.indexbar {position: absolute;/*background: #0fc;*/width: 50%;height: 5px;left: 0px;bottom: 0px;-webkit-transition: 300ms;}
+  	.redbox {background: #DB4646;width: 40px;height: 5px;position: relative;left: auto;right: auto; margin-left: auto; margin-right: auto;}
+
+
+  	/* 本地刷新图标 */
+  	#localrefresh {display:none;float: right; width: 40px; padding: 5px 10px;}
+  	#field1::-webkit-input-placeholder { color:#666; }
+  	#field1 {height: 30px; line-height: 30px; width: 70%;}
+
+  	.swipe {line-height: 50px;margin-right: 10px;color: #FF8400;}
+  	.back {float: left; }
+  	.back img {height: 30px; margin-top: 10px; margin-left: 10px; margin-bottom: 6px; margin-right: 30px;}
+  	.topbar .title {line-height: 50px;font-size: 22px;position: absolute;left: 50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);}
+
+
+    </style>
+</head>
+<body>
+  <div id="wrap">
+    <!-- 第三头部 -->
+    <div id="thridHeader" class="titlebar" style="margin-top:30px;">
+      <div class="topbar whitebar">
+        <div class="back"  tapmode="" onclick="goback()"><img src="../image/ic_back_u.png" alt=""></div>
+        <div class="title" id="title">机床保养小知识</div>
+      </div>
+    </div>
+
+    <div class="content"><br/>
+        <p>机械设备都是需要保养的，机床当然也是如此。作为制造机器的机器，机床在金属加工中占据了重要地位，将机床保养好才能在生产发挥最大效益。而对于机床保养来说，机床润滑是必不可少的。润滑油不仅能减低机械的摩擦，还能冷却降温、密封防漏、防止锈蚀、减震缓冲及清洗清洁等作用，增加机床的使用寿命，种种好处都说明了润滑保养的作用之大。
+        </p><br/>
+        <img class="pic" src="../image/baoyang/baoyang1.jpg" style="width:70%;"><br/>
+        <img class="pic" src="../image/baoyang/baoyang2.jpg" style="width:70%;"><br/>
+        <h3 align="center">机床润滑的方式盘点</h3>
+        <p>机床润滑的方式有很多种，常见的分别是手工加油润滑、滴油润滑、油绳润滑、自吸润滑、离心润滑、油浴润滑、油环润滑、飞溅润滑、刮板润滑、滚轮润滑、喷射润滑手动泵压油润滑、压力循环润滑、自动定时定量润滑、油雾润滑等等。
+        </p>
+        <p> 机床润滑方式的选择要根据机床的结构、自动化程度、机床使用的工况及对精密度的要求进行综合衡量而作出决定的，机床润滑在满足减磨降耗的同时要力求避免温升和振动。
+        </p><br/>
+        <img class="pic" src="../image/baoyang/baoyang3.jpg" style="width:70%;"><br/>
+        <h3 align="center">机床润滑的注意事项</h3>
+        <p>1、机床中的主要零部件多为典型机械零部件，标准化、通用化，系列化程度高。例如滑动轴承、滚动轴承、齿轮、蜗轮副、滚动及滑动导轨、螺旋传动副(丝杠螺母副)、离合器、液压系统、凸轮等等，润滑情况各不相同。
+        </p>
+        <p>2、机床的使用环境条件：机床通常安装在室内环境中使用，夏季环境温度最高为40℃，冬季气温低于0℃时多采取供暖方式，使环境温度高于5-10℃。高精度机床要求恒温空调环境，一般在20℃上下。但由于不少机床的精度要求和自动化程度较高，对润滑油的粘度、抗氧化性(使用寿命)和油的清洁度的要求较严格。
+        </p>
+        <p>3、机床的工况条件：不同类型的不同规格尺寸的机床，甚至在同一种机床上由于加工件的情况不同，工况条件有很大不同。对润滑的要求有所不同。例如高速内圆磨床的砂轮主轴轴承与重型机床的重载、低速主轴轴承对润滑方法和润滑剂的要求有很大不同。前者需要使用油雾或油/气润滑系统润滑，使用较低粘度的润滑油，而后者则需用油浴或压力循环润滑系统润滑，使用较高粘度的油品。
+        </p>
+        <p>4、润滑油品与润滑冷却液、橡胶密封件、油漆材料等的适应性：在大多数机床上使用了润滑冷却液，在润滑油中，常常由于混入冷却液而使油品乳化及变质、机件生锈等，使橡胶密封件膨胀变形，使零件表面油漆涂层气泡、剥落。因此考虑油品与润滑冷却液、橡胶密封件、油漆材料的适应性、防止漏油等。特别是随着机床自动化程度的提高，在一些自动化和数控机床上使用了润滑/冷却通用油，既可作润滑油、也可作为润滑冷却液使用。
+        </p>
+
+
+
+    </div>
+
+
+
+
+  </div>
+
+
+
+
+
+
+
+
+</body>
+</html>
+
+<script>
+function goback () {
+  api.closeWin({name:'baoyang'});
+}
+</script>

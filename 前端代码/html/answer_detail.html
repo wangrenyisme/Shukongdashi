@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <style>
+    /* 头部样式 */
+    .topbar {background: #FF8400; height:50px; border-bottom: 1px solid #DDDFE3;}
+    .topbar_title {display: inline-block;font-size: 20px; line-height: 50px;padding-left: 12px;}
+    .hr01, .hr02 {height: 28px;}
+    .headerico {padding: 11px 15px 11px 15px;}
+    .headericohover {background: #DADDE0;}
+    .fr{float: right;}
+    .fl{float: left;}
+
+    /*第一头部*/
+    #logo {padding: 11px 0 0 10px;height: 28px;}
+    #citylist {height: 50px; line-height: 50px;padding-left: 15px; font-size: 18px; color: #fff;}
+    .citylistarrow {vertical-align: top; width: 20px; padding-top: 15px;}
+   .search {height: 34px;line-height: 34px; padding-left: 10px; border-radius: 30px;  margin-top: 8px; position: absolute; left: 20px; right: 60px;font-size: 14px;}
+   .search img:first-child {vertical-align: top; width: 20px; padding-top: 7px;padding-right: 10px;}
+   .search img:last-child {vertical-align: top; width: 20px; padding-top: 7px;}
+   .firstSearch {left: 90px;right: 60px;background-color: #FA6604;color: #FDC29B;}
+
+    /* 第二头部 */
+    #topbar_refresh {width: 40px;padding:5px 10px;}
+    .whitebar {background-color: #fcfcfc;}
+    #whitecity {height: 50px; line-height: 50px;padding-left: 15px; font-size: 18px;color: #FF8400;}
+   .secCitylistarrow {vertical-align: top; width: 15px; padding-top: 18px;padding-left: 5px;}
+   .secSearch {left: 90px;right: 15px;background-color: #E8E8E8;color: #999;}
+
+   /* 第三头部 */
+   .swipepic {padding: 5px 15px 2px 15px;height: 23px;}
+   .swipe div {font-size: 4px; text-align: center;color: #999;}
+   .thrSearch {left: 50px;right: 60px;background-color: #E8E8E8;color: #999;}
+
+    /* 头部切换样式 */
+    .activebar {display: block;}
+
+    /* 底部切换按钮样式 */
+    ul {display: -webkit-box; display: -webkit-flex; display: flex; }
+    #footer {height: 61px; line-height: 60px; background-color: #FAFAFA;border-top: 1px solid #FAFAFA; }
+    #footer li{-webkit-box-flex: 1; -webkit-flex: 1; flex:1; height: 60px;}
+
+    /* 选项卡样式 */
+    .scrollbar {display: -webkit-box;display: -webkit-flex; text-align: center; height: 40px; line-height: 40px;background: #EBECF0;font-size: 12px;position: relative;}
+    .col1 {-webkit-box-flex:1;-webkit-flex: 1;flex:1;color: #909090;}
+    .indexbar {position: absolute;/*background: #0fc;*/width: 50%;height: 5px;left: 0px;bottom: 0px;-webkit-transition: 300ms;}
+    .redbox {background: #DB4646;width: 40px;height: 5px;position: relative;left: auto;right: auto; margin-left: auto; margin-right: auto;}
+
+
+    /* 本地刷新图标 */
+    #localrefresh {display:none;float: right; width: 40px; padding: 5px 10px;}
+    #field1::-webkit-input-placeholder { color:#666; }
+    #field1 {height: 30px; line-height: 30px; width: 70%;}
+
+    .swipe {line-height: 50px;margin-right: 10px;color: #FF8400;}
+    .back {float: left; }
+    .back img {height: 30px; margin-top: 10px; margin-left: 10px; margin-bottom: 6px; margin-right: 30px;}
+    .topbar .title {line-height: 50px;font-size: 22px;position: absolute;left: 50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);}
+
+
+
+    /* 详细信息 */
+    .content{
+      margin-top: 10px;
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+
+    /* 评论模块*/
+    .h20 {height: 20px;background-color: #F5F5F5;}
+    .commentInput{width:70%;height: 50px;border-width: 1px;border-color: #FC5500;}
+    .buynow {background-color: #1ab394; color: #fff; height: 25px; line-height: 25px; border-radius: 3px;padding: 10px 20px;margin-top: 7px;}
+
+
+    </style>
+</head>
+<body>
+  <div id="wrap">
+    <!-- 第三头部 -->
+    <div id="thridHeader" class="titlebar" style="height:65px">
+      <div class="topbar whitebar" style="height:65px">
+        <div class="back"  tapmode="" onclick="goback()" style="margin-top:20px"><img src="../image/ic_back_u.png" alt=""></div>
+        <div class="title" id="title" style="margin-top:20px">详情</div>
+      </div>
+    </div>
+
+    <div class="content">
+      <h4>故障描述</h4>
+        <p id="question"></p>
+        <br/>
+      <h4>原因及解决方案</h4>
+      <div id="answer"></div>
+    </div>
+
+
+  </div>
+
+
+
+
+
+
+
+</body>
+</html>
+<script>
+apiready = function(){
+  //获取上一页面传来的数据（解决方案）
+  var question = api.pageParam.question;
+  var answer = api.pageParam.answer;
+  // alert(answer);
+
+  questionContent = document.getElementById('question');
+  questionContent.innerHTML = question;
+  answerContent = document.getElementById('answer');
+  answerContent.innerHTML = answer;
+};
+
+
+function goback () {
+  api.closeWin({name:'answer_detail'});
+}
+</script>

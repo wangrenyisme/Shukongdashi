@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>故障诊断</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <style>
+        .empty{ text-align: center; padding:  0; }
+
+        /* 头部样式 */
+        .topbar {background: #FF8400; height:50px; border-bottom: 1px solid #DDDFE3;}
+        .topbar_title {display: inline-block;font-size: 20px; line-height: 50px;padding-left: 12px;}
+        .hr01, .hr02 {height: 28px;}
+        .headerico {padding: 11px 15px 11px 15px;}
+        .headericohover {background: #DADDE0;}
+        .fr{float: right;}
+        .fl{float: left;}
+
+        /* select框 */
+        #brand {height: 34px;width: 60px;float: left; margin-top: 8px; margin-left: 8px;}
+
+
+
+        /*第一头部*/
+        #logo {padding: 11px 0 0 10px;height: 28px;}
+        #citylist {height: 50px; line-height: 50px;padding-left: 15px; font-size: 18px; color: #fff;}
+        .citylistarrow {vertical-align: top; width: 20px; padding-top: 15px;}
+        .search {height: 34px;line-height: 34px; padding-left: 5px; border-radius: 30px;  margin-top: 8px; position: absolute; left: 20px; right: 60px;font-size: 12px;}
+        .search img:first-child {vertical-align: top; width: 20px; padding-top: 7px;padding-right: 10px;}
+        .search img:last-child {vertical-align: top; width: 27px; padding-top: 4px;}
+        .firstSearch {left: 85px;right: 60px;background-color: #FA6604;color: #FDC29B;}
+
+         /* 第二头部 */
+         #topbar_refresh {width: 40px;padding:5px 10px;}
+         .whitebar {background-color: #fcfcfc;}
+         #whitecity {height: 50px; line-height: 50px;padding-left: 15px; font-size: 18px;color: #FF8400;}
+        .secCitylistarrow {vertical-align: top; width: 15px; padding-top: 18px;padding-left: 5px;}
+        .secSearch {left: 90px;right: 15px;background-color: #E8E8E8;color: #999;}
+
+        /* 第三头部 */
+        .swipepic {padding: 5px 15px 2px 15px;height: 23px;}
+        .swipe div {font-size: 4px; text-align: center;color: #999;}
+        .thrSearch {left: 40px;right: 60px;background-color: #E8E8E8;color: #999;}
+
+        /* 头部切换样式 */
+        .activebar {display: block;}
+
+        /* 底部切换按钮样式 */
+        ul {display: -webkit-box; display: -webkit-flex; display: flex; }
+        #footer {height: 61px; line-height: 60px; background-color: #FAFAFA;border-top: 1px solid #FAFAFA; }
+        #footer li{-webkit-box-flex: 1; -webkit-flex: 1; flex:1; height: 60px;}
+
+        /* 选项卡样式 */
+        .scrollbar {display: -webkit-box;display: -webkit-flex; text-align: center; height: 40px; line-height: 40px;background: #EBECF0;font-size: 12px;position: relative;}
+        .col1 {-webkit-box-flex:1;-webkit-flex: 1;flex:1;color: #909090;}
+        .indexbar {position: absolute;/*background: #0fc;*/width: 50%;height: 5px;left: 0px;bottom: 0px;-webkit-transition: 300ms;}
+        .redbox {background: #DB4646;width: 40px;height: 5px;position: relative;left: auto;right: auto; margin-left: auto; margin-right: auto;}
+
+
+        /* 本地刷新图标 */
+        #localrefresh {display:none;float: right; width: 40px; padding: 5px 10px;}
+        #field1::-webkit-input-placeholder { color:#666; }
+        #field1 {height: 30px; /*line-height: 30px;*//width: 70%;}
+        .thridHeader .search input::-webkit-input-placeholder {line-height: 30px; }
+
+        .swipe {line-height: 50px;margin-right: 10px;color: #FF8400;}
+        .back {float: left; }
+        .back img {height: 30px;margin-top: 10px;margin-left: 10px;}
+
+
+
+        /* 保养知识样式 */
+    		.snapup {height: 80px;}
+    		.snapup .infologo {height: 50px; margin: 10px;}
+    		.snapup .shelf2 {display: table;height: inherit;margin-left: 10px;}
+    		.snapup .shelfcell {display: table-cell;vertical-align: middle;}
+    		.snapup .shelfcell .title {margin-bottom: 10px;}
+    		.snapup .arrow {width: 20px; padding-top: 30px;padding-right: 10px;}
+        .snapup .shelfcell .hot-subtitle {font-size: 12px;color: #666;margin-left: 1px;margin-bottom: 9px; }
+
+
+        #main{ padding: 2px; background-color: #e5e5e5;  }
+        #main .flex-vertical .layout{ background:#e66961 url() right bottom no-repeat; margin: .3rem;  padding: .3rem; background-size: auto 50%; line-height: 2rem;  color: white; font-size: 1.8rem; }
+        #main .flex-vertical .layout p{ font-size: 1rem; }
+        #main .flex-vertical .layout.ic-hot{ background-image: url(../image/ic-hot.png); }
+        #main .flex-vertical .layout.ic-article{ background-image: url(../image/ic-article.png); background-color: #6ab494; }
+        #main .flex-vertical .layout.ic-tag{ background-image: url(../image/ic-tag.png); background-color: #9e9a8d; font-size: 1.6rem;}
+        #main .flex-vertical .layout.ic-coffee{ background-image: url(../image/ic-coffee.png); background-color: #ebd275;  font-size: 1.6rem;}
+        #main .flex-vertical .layout.ic-shop{ background-image: url(../image/ic-shop.png); background-color: #6ab494; }
+        #main .flex-vertical .layout.ic-like{ background-image: url(../image/ic-like.png); background-color: #d8c09d; font-size: 1.6rem;}
+        #main .flex-vertical .layout.ic-lable{ background-image: url(../image/ic-lable.png); font-size: 1.2rem;}
+        #main .flex-vertical .layout.ic-more{ background-image: url(../image/ic-more.png); background-color: #ebd275; font-size: 1.2rem; background-size:
+         50% auto; background-position: center right; }
+        .flex-2{ -webkit-box-flex: 2;     -webkit-flex: 2;    flex: 2; }
+        .hover{ opacity: .8; }
+    </style>
+</head>
+<body>
+    <div class="empty">
+      <div id="wrap">
+        <!-- 第三头部 -->
+        <div id="thridHeader" class="titlebar">
+          <div class="topbar whitebar">
+
+            <div class="search thrSearch" onclick="funOpenSearchInput();">
+                <img src="../image/navibar_search_icon_search.png" alt="">
+                <input type="text" class="" id="userInput" placeholder="请输入故障描述">
+            </div>
+            <div class="swipe fr" onclick="funOpenSearchInput();">
+                搜索
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 保养知识-->
+    	<div class="h20"></div>
+    	<div class="snapup hightitem section02" tapmode="presshover" onclick="openBaoyang()">
+    		<img src="../image/baoyang/baoyang2.jpg" alt="" class="fl infologo">
+    		<div class="shelf2 fl">
+    			<div class="shelfcell">
+    				<div class="title">数控机床保养小知识 </div>
+            <div class="title hot-subtitle">将机床保养好才能在生产中发挥最大效益</div>
+    			</div>
+
+    		</div>
+    		<img src="../image/arrow.png" alt="" class="arrow fr">
+    	</div>
+
+<!-- 大方块 -->
+<div id="main" class="flex-wrap flex-con" style="height:388px" >
+     <div class="flex-con flex-wrap flex-vertical">
+         <div tapmode="hover" onclick="funOpenArticleMits( this );" class="flex-wrap flex-con flex-2 layout-wrap">
+             <div class="flex-con layout ic-hot"  style="height:112.29px;background-image:url(../image/1.jpg);">
+                <h6>三菱</h6>
+                <p>SIEMENS</p>
+             </div>
+         </div>
+         <div tapmode="hover" onclick="funOpenArticleHua(this);"  class="flex-wrap flex-con flex-2 layout-wrap">
+             <div class="flex-con layout ic-tag" style="height:112.29px;background-image:url(../image/2.jpg);margin-top:-22px">
+                <h6>华中数控</h6>
+                <p>Wuhan Huazhong Numerical Control co.,ltd</p>
+             </div>
+         </div>
+         <div tapmode="hover" onclick="funOpenArticleREX( this );"  class="flex-wrap flex-con layout-wrap">
+             <div class="flex-con layout  ic-article" style="height:112.29px;background-image:url(../image/3.jpg);margin-top:-49px">
+                <h6>力士乐</h6>
+                <p>Rexroth</p>
+             </div>
+         </div>
+     </div>
+     <div class="flex-wrap flex-con flex-vertical">
+         <div tapmode="hover" onclick="funOpenArticleREX( this );"  class="flex-wrap flex-con layout-wrap">
+             <div class="flex-con layout ic-coffee" style="height:112.29px;background-image:url(../image/4.jpg);">
+                <h6>发那科</h6>
+                <p>FANUC</p>
+             </div>
+         </div>
+         <div tapmode="hover" onclick="funOpenArticleMits( this );"  class="flex-wrap flex-con flex-2 layout-wrap">
+             <div class="flex-con layout ic-shop" style="height:112.29px;background-image:url(../image/5.jpg);margin-top:37px">
+                <h6>西门子</h6>
+                <p>SIEMENS</p>
+             </div>
+         </div>
+         <div tapmode="hover" onclick="funOpenArticleGSK( this );"  class="flex-wrap flex-con layout-wrap">
+             <div class="flex-con layout ic-like" style="height:112.29px;background-image:url(../image/6.jpg);margin-top:-30px">
+                <h6>广州数控</h6>
+                <p>GSK</p>
+             </div>
+         </div>
+
+     </div>
+</div>
+
+
+
+    </div>
+</body>
+</html>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+ function goback () {
+    api.closeWin({name:'frame1'});
+  }
+
+  // 完成首页初始化
+  apiready = function(){
+    var thridHeader = $api.byId('thridHeader');
+    $api.fixStatusBar(thridHeader);
+    var thridHeader = $api.offset(thridHeader);
+  };
+
+
+
+
+  function funOpenSearchInput( ){
+      api.openWin({
+          name: 'searchInput',
+          url: './searchInput.html',
+      });
+  }
+
+  function openBaoyang( ){
+      api.openWin({
+          name: 'baoyang',
+          url: './baoyang.html',
+
+      });
+  }
+
+
+
+  function voiceSearch () {
+    var speechObj = api.require('speechRecognizer');
+    api.toast({
+      msg : "语音识别开始，请说话",
+      duration : 1000,
+      location : "middle"
+    });
+
+    speechObj.record({
+    },function(ret,err){
+        if(ret.status){
+          document.getElementById("userInput").value=ret.wordStr;
+            // ret.wordStr;
+            api.alert({
+              title : "识别结果",
+              msg : ret.wordStr
+            })
+            speechObj.stopRecord();
+        }
+    });
+  }
+
+</script>
+
+<script type="text/javascript">
+
+    function funOpenArticleMits( tag ){
+        api.openWin({
+            name: 'MitsErrorType',
+            url: './MitsErrorType.html',
+        });
+    }
+    function funOpenArticleREX( tag ){
+        api.openWin({
+            name: 'RexErrorType',
+            url: './RexErrorType.html',
+        });
+    }
+    function funOpenArticleHua( tag ){
+        api.openWin({
+            name: 'HuaErrorType',
+            url: './HuaErrorType.html',
+        });
+    }
+    function funOpenArticleGSK( tag ){
+        api.openWin({
+            name: 'GSKErrorType',
+            url: './GSKErrorType.html',
+        });
+    }
+</script>
